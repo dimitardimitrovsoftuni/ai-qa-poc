@@ -1,0 +1,34 @@
+{
+  "name": "ai-qa-poc",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AI test planner, generator and self-healer running entirely on free models, demonstrated on public practice sites",
+  "type": "module",
+  "scripts": {
+    "doctor": "tsx src/tools/doctor.ts",
+    "ai:ping": "tsx src/tools/ai_ping.ts",
+    "capture": "tsx src/capture/snapshot.ts",
+    "plan": "tsx src/planner/run_planner.ts",
+    "generate": "tsx src/generator/run_generator.ts",
+    "test": "tsx src/runner/run_tests.ts",
+    "heal": "tsx src/healer/run_healer.ts",
+    "usage": "tsx src/tools/usage_report.ts",
+    "ledger": "tsx src/tools/ledger_snapshot.ts",
+    "demo": "tsx src/tools/demo.ts",
+    "gates": "tsx src/tools/gate_check.ts",
+    "batch": "tsx src/tools/batch.ts",
+    "probe": "tsx src/tools/probe.ts"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "playwright": "^1.49.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

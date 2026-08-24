@@ -1,0 +1,127 @@
+{
+  "site": "practicesoftwaretesting",
+  "feature": "cart contents",
+  "tests": [
+    {
+      "id": "add_product_to_cart",
+      "name": "test_add_product_to_cart",
+      "title": "Adding a product to the cart updates the cart quantity and total",
+      "pages": [
+        "product_detail",
+        "product_detail_added",
+        "cart"
+      ],
+      "preconditions": [],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/",
+          "note": "a stable path; the product is reached by clicking"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"product-name\"]",
+          "note": "the first card — chain .first, this selector matches every product"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"add-to-cart\"]"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"cart-quantity\"]",
+          "note": "Cart quantity indicator appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"cart-quantity\"]",
+          "value": "1"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"cart-total\"]",
+          "note": "Cart total updates"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"cart-total\"]",
+          "value": "$28.30"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "#toast-container",
+          "note": "Toast notification appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "#toast-container",
+          "value": "Product added to shopping cart."
+        }
+      ],
+      "expected": [
+        "Cart quantity increases to 1",
+        "Cart total reflects the product price",
+        "Toast notification confirms successful addition"
+      ]
+    },
+    {
+      "id": "cart_total_calculates_correctly",
+      "name": "test_cart_total_calculates_correctly",
+      "title": "Cart total reflects quantity changes",
+      "pages": [
+        "cart"
+      ],
+      "preconditions": [],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/checkout"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"product-quantity\"]",
+          "value": "3"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"line-price\"]",
+          "note": "Line price updates"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"line-price\"]",
+          "value": "$42.45"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"cart-total\"]",
+          "note": "Cart total updates"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"cart-total\"]",
+          "value": "$42.45"
+        }
+      ],
+      "expected": [
+        "Cart total reflects updated quantity"
+      ]
+    }
+  ],
+  "meta": {
+    "model": "dots-studio/dots-3-note-preview:free",
+    "generatedAt": "2026-08-22T14:07:19.454Z",
+    "pagesUsed": [
+      "cart",
+      "product_detail",
+      "product_detail_added"
+    ],
+    "repairs": 1,
+    "dataFix": "2026-08-22: the plan opened a ULID product URL, which this site declares unstable for selectors and which is just as perishable as a path. Replaced with the stable route: home, then click the first product card.",
+    "supersededBy": [
+      "practicesoftwaretesting_add_product_to_cart.json",
+      "practicesoftwaretesting_cart_total_calculates_correctly.json"
+    ],
+    "supersededNote": "Split one test per plan; the bogus \"logged out\" precondition removed."
+  }
+}

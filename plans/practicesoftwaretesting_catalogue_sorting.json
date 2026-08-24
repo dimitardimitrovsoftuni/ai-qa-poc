@@ -1,0 +1,113 @@
+{
+  "site": "practicesoftwaretesting",
+  "feature": "catalogue sorting",
+  "tests": [
+    {
+      "id": "sort_by_name_descending",
+      "name": "test_sort_by_name_descending",
+      "title": "Sorting by Name (Z-A) reorders products and keeps the same count",
+      "pages": [
+        "home"
+      ],
+      "preconditions": [],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"product-name\"]",
+          "note": "product grid loaded"
+        },
+        {
+          "action": "expect_count",
+          "selector": "[data-test=\"product-name\"]",
+          "value": 9
+        },
+        {
+          "action": "select",
+          "selector": "[data-test=\"sort\"]",
+          "value": "name,desc"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"product-name\"]",
+          "note": "grid reloaded after sort"
+        },
+        {
+          "action": "expect_count",
+          "selector": "[data-test=\"product-name\"]",
+          "value": 9
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"product-name\"]",
+          "value": "Wood Saw"
+        }
+      ],
+      "expected": [
+        "the first product becomes Thor Hammer (last alphabetically)",
+        "the number of product cards remains 9"
+      ]
+    },
+    {
+      "id": "sort_by_price_ascending",
+      "name": "test_sort_by_price_ascending",
+      "title": "Sorting by Price (Low-High) reorders products and keeps the same count",
+      "pages": [
+        "home"
+      ],
+      "preconditions": [],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"product-name\"]",
+          "note": "product grid loaded"
+        },
+        {
+          "action": "expect_count",
+          "selector": "[data-test=\"product-name\"]",
+          "value": 9
+        },
+        {
+          "action": "select",
+          "selector": "[data-test=\"sort\"]",
+          "value": "price,asc"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"product-name\"]",
+          "note": "grid reloaded after sort"
+        },
+        {
+          "action": "expect_count",
+          "selector": "[data-test=\"product-name\"]",
+          "value": 9
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"product-name\"]",
+          "value": "Washers"
+        }
+      ],
+      "expected": [
+        "the first product becomes Slip Joint Pliers (cheapest at $9.17)",
+        "the number of product cards remains 9"
+      ]
+    }
+  ],
+  "meta": {
+    "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+    "generatedAt": "2026-08-20T17:59:07.018Z",
+    "pagesUsed": [
+      "home"
+    ],
+    "repairs": 0,
+    "dataFix": "Expected first-product names verified against the live catalogue 2026-08-22. The capture only ever saw the UNSORTED first page, so the planner inferred what sorting would put first from that subset and got both wrong: name,desc is \"Wood Saw\" (not \"Thor Hammer\") and price,asc is \"Washers\" (not \"Slip Joint Pliers\"). The capture sets a ceiling on expected VALUES, not only on selectors. Known limitation: naming the first product couples these tests to the demo dataset; asserting that the rendered names are in sorted order would be stronger and needs a plan action that does not exist yet."
+  }
+}

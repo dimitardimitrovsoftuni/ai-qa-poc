@@ -1,0 +1,365 @@
+{
+  "site": "saucedemo",
+  "feature": "cart and checkout",
+  "tests": [
+    {
+      "id": "successful_checkout_flow",
+      "name": "test_successful_checkout_flow",
+      "title": "Complete checkout flow from adding an item to finishing the order",
+      "pages": [
+        "inventory",
+        "cart",
+        "checkout_step_one",
+        "checkout_step_two"
+      ],
+      "preconditions": [
+        "logged in"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/inventory.html"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"add-to-cart-sauce-labs-backpack\"]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"shopping-cart-link\"]"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"cart-list\"]",
+          "note": "cart shows the added item"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"inventory-item-name\"]",
+          "value": "Sauce Labs Backpack"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"checkout\"]"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"firstName\"]",
+          "value": "John"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"lastName\"]",
+          "value": "Doe"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"postalCode\"]",
+          "value": "12345"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"continue\"]"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"checkout-summary-container\"]",
+          "note": "overview page loads"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"inventory-item-name\"]",
+          "value": "Sauce Labs Backpack"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"subtotal-label\"]",
+          "value": "Item total: $29.99"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"tax-label\"]",
+          "value": "Tax: $2.40"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"total-label\"]",
+          "value": "Total: $32.39"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"finish\"]"
+        },
+        {
+          "action": "expect_url",
+          "value": "/checkout-complete.html"
+        }
+      ],
+      "expected": [
+        "item is added to cart and appears in the cart page",
+        "checkout step one accepts valid information and proceeds to overview",
+        "overview shows correct item, subtotal, tax, and total",
+        "clicking finish redirects to the order confirmation page"
+      ]
+    },
+    {
+      "id": "remove_item_from_cart",
+      "name": "test_remove_item_from_cart",
+      "title": "Removing an item empties the cart and hides the badge",
+      "pages": [
+        "inventory",
+        "cart"
+      ],
+      "preconditions": [
+        "logged in"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/inventory.html"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"add-to-cart-sauce-labs-backpack\"]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"shopping-cart-link\"]"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"cart-list\"]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"remove-sauce-labs-backpack\"]"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"remove-sauce-labs-backpack\"]",
+          "note": "item removed from cart"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"shopping-cart-badge\"]",
+          "note": "badge disappears when cart is empty"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"continue-shopping\"]"
+        },
+        {
+          "action": "expect_url",
+          "value": "/inventory.html"
+        }
+      ],
+      "expected": [
+        "remove button disappears after clicking",
+        "cart badge is no longer present in the header",
+        "continue shopping returns to the inventory page"
+      ]
+    },
+    {
+      "id": "cancel_checkout_at_step_one",
+      "name": "test_cancel_checkout_at_step_one",
+      "title": "Cancel button on checkout step one returns to cart with item intact",
+      "pages": [
+        "inventory",
+        "cart",
+        "checkout_step_one"
+      ],
+      "preconditions": [
+        "logged in"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/inventory.html"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"add-to-cart-sauce-labs-backpack\"]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"shopping-cart-link\"]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"checkout\"]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"cancel\"]"
+        },
+        {
+          "action": "expect_url",
+          "value": "/cart.html"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"cart-list\"]"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"inventory-item-name\"]",
+          "value": "Sauce Labs Backpack"
+        }
+      ],
+      "expected": [
+        "cancel returns the user to the cart page",
+        "the previously added item remains in the cart"
+      ]
+    },
+    {
+      "id": "cancel_checkout_at_step_two",
+      "name": "test_cancel_checkout_at_step_two",
+      "title": "Cancel button on checkout step two returns to inventory with cart unchanged",
+      "pages": [
+        "inventory",
+        "cart",
+        "checkout_step_one",
+        "checkout_step_two"
+      ],
+      "preconditions": [
+        "logged in"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/inventory.html"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"add-to-cart-sauce-labs-backpack\"]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"shopping-cart-link\"]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"checkout\"]"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"firstName\"]",
+          "value": "John"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"lastName\"]",
+          "value": "Doe"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"postalCode\"]",
+          "value": "12345"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"continue\"]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"cancel\"]"
+        },
+        {
+          "action": "expect_url",
+          "value": "/inventory.html"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"shopping-cart-badge\"]"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"shopping-cart-badge\"]",
+          "value": "1"
+        }
+      ],
+      "expected": [
+        "cancel on overview returns to the inventory page",
+        "cart badge still shows the item count (1)"
+      ]
+    },
+    {
+      "id": "cart_badge_updates_on_add_remove",
+      "name": "test_cart_badge_updates_on_add_remove",
+      "title": "Cart badge appears when adding an item and disappears when removing it",
+      "pages": [
+        "inventory",
+        "cart"
+      ],
+      "preconditions": [
+        "logged in"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/inventory.html"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"shopping-cart-badge\"]",
+          "note": "badge absent on empty cart"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"add-to-cart-sauce-labs-backpack\"]"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"shopping-cart-badge\"]"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"shopping-cart-badge\"]",
+          "value": "1"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"shopping-cart-link\"]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"remove-sauce-labs-backpack\"]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"continue-shopping\"]"
+        },
+        {
+          "action": "expect_url",
+          "value": "/inventory.html"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"shopping-cart-badge\"]",
+          "note": "badge gone after removal"
+        }
+      ],
+      "expected": [
+        "badge is not present when cart is empty",
+        "badge appears with count 1 after adding an item",
+        "badge disappears after removing the only item and returning to inventory"
+      ]
+    }
+  ],
+  "meta": {
+    "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+    "generatedAt": "2026-08-19T17:41:35.814Z",
+    "pagesUsed": [
+      "cart",
+      "checkout_step_one",
+      "checkout_step_two",
+      "inventory"
+    ],
+    "repairs": 0,
+    "supersededBy": [
+      "saucedemo_cancel_checkout_step_one.json",
+      "saucedemo_cancel_checkout_step_two.json"
+    ],
+    "supersededNote": "Deduplicated 2026-08-22. These three plans were written on different days and overlap almost entirely: the union of their ten test entries is five distinct tests, and three of those five were already in the suite and green (test_successful_checkout_flow in test_checkout_order.py, test_remove_item_from_cart in test_cart.py, test_cart_badge_updates_on_add_remove in test_cart.py). Only the two cancel-checkout tests were new, and they are now one plan each. Kept for the record; generate from the split plans instead."
+  }
+}

@@ -1,0 +1,219 @@
+{
+  "id": "saucedemo",
+  "name": "Swag Labs (SauceDemo)",
+  "baseUrl": "https://www.saucedemo.com",
+  "testsDir": "tests/saucedemo",
+  "facts": "Swag Labs is a small e-commerce demo store used for UI automation practice. Flow: log in, browse a 6-item product inventory, sort it, add items to the cart, then a three-step checkout (address form, order overview, confirmation). A hamburger menu holds Logout and Reset App State. Several accounts exist to exercise failure paths: locked_out_user cannot log in, problem_user renders broken images and misbehaving controls, performance_glitch_user responds slowly, error_user and visual_user break specific interactions. Application state (cart contents) is stored per browser session and can be reset from the menu. The product sort control (data-test=\"product-sort-container\") takes the option values az, za, lohi and hilo, and the applied option's label is shown in data-test=\"active-option\". Add-to-cart controls are REPLACED rather than relabelled: after clicking data-test=\"add-to-cart-<slug>\" that element is gone and a separate data-test=\"remove-<slug>\" element takes its place. A test that expects the add button to change its text fails with 'element(s) not found'. The same applies on the product detail page.",
+  "auth": {
+    "loginPath": "/",
+    "credentials": {
+      "user": "SAUCEDEMO_USER",
+      "password": "SAUCEDEMO_PASS"
+    },
+    "steps": [
+      {
+        "action": "fill",
+        "selector": "#user-name",
+        "value": "$user"
+      },
+      {
+        "action": "fill",
+        "selector": "#password",
+        "value": "$password"
+      },
+      {
+        "action": "click",
+        "selector": "#login-button"
+      }
+    ],
+    "readySelector": ".inventory_list"
+  },
+  "resetState": [
+    {
+      "action": "goto",
+      "path": "/inventory.html"
+    },
+    {
+      "action": "click",
+      "selector": "#react-burger-menu-btn"
+    },
+    {
+      "action": "click",
+      "selector": "#reset_sidebar_link"
+    },
+    {
+      "action": "click",
+      "selector": "#react-burger-cross-btn",
+      "optional": true
+    },
+    {
+      "action": "goto",
+      "path": "/inventory.html"
+    }
+  ],
+  "pages": [
+    {
+      "name": "login",
+      "path": "/",
+      "auth": false,
+      "ready": "#login-button",
+      "note": "Entry page. The accepted usernames and the shared password are printed on the page itself."
+    },
+    {
+      "name": "login_error",
+      "auth": false,
+      "ready": "[data-test=\"error\"]",
+      "before": [
+        {
+          "action": "goto",
+          "path": "/"
+        },
+        {
+          "action": "fill",
+          "selector": "#user-name",
+          "value": "locked_out_user"
+        },
+        {
+          "action": "fill",
+          "selector": "#password",
+          "value": "$password"
+        },
+        {
+          "action": "click",
+          "selector": "#login-button"
+        }
+      ],
+      "note": "Rejected login. No path on purpose: navigating would wipe the error banner. locked_out_user is one of the deliberately broken accounts."
+    },
+    {
+      "name": "inventory",
+      "path": "/inventory.html",
+      "ready": ".inventory_list",
+      "note": "Product list with sort dropdown and per-item add-to-cart buttons."
+    },
+    {
+      "name": "item_detail",
+      "path": "/inventory-item.html?id=4",
+      "ready": ".inventory_details_name",
+      "note": "Single product view reached by clicking a product title. Has its own add-to-cart control, which is REPLACED by a remove control once clicked, and a 'Back to products' link."
+    },
+    {
+      "name": "item_detail_added",
+      "path": "/inventory-item.html?id=4",
+      "ready": "[data-test=\"remove\"]",
+      "before": [
+        {
+          "action": "goto",
+          "path": "/inventory-item.html?id=4"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"add-to-cart\"]"
+        }
+      ],
+      "note": "The detail page AFTER adding, where the add control has been replaced by data-test=\"remove\". Captured as its own page because that replacement selector is otherwise never observed, and a planner may only use observed selectors - so without this the only assertion it can express is that add-to-cart changes its text, which is not what the application does. The note on item_detail already said so in prose; prose does not constrain a planner that copies selectors from a list. Readiness is the remove control itself, which is true only in the state being captured."
+    },
+    {
+      "name": "cart",
+      "path": "/cart.html",
+      "ready": ".cart_list",
+      "before": [
+        {
+          "action": "goto",
+          "path": "/inventory.html"
+        },
+        {
+          "action": "click",
+          "selector": "#add-to-cart-sauce-labs-backpack"
+        }
+      ],
+      "note": "Captured with one item already added, so the populated state is visible."
+    },
+    {
+      "name": "checkout_step_one",
+      "path": "/checkout-step-one.html",
+      "ready": "#first-name",
+      "note": "Address form: first name, last name, postal code."
+    },
+    {
+      "name": "checkout_step_two",
+      "path": "/checkout-step-two.html",
+      "ready": ".summary_info",
+      "before": [
+        {
+          "action": "goto",
+          "path": "/inventory.html"
+        },
+        {
+          "action": "click",
+          "selector": "#add-to-cart-sauce-labs-backpack"
+        },
+        {
+          "action": "goto",
+          "path": "/checkout-step-one.html"
+        },
+        {
+          "action": "fill",
+          "selector": "#first-name",
+          "value": "Ada"
+        },
+        {
+          "action": "fill",
+          "selector": "#last-name",
+          "value": "Lovelace"
+        },
+        {
+          "action": "fill",
+          "selector": "#postal-code",
+          "value": "1000"
+        },
+        {
+          "action": "click",
+          "selector": "#continue"
+        }
+      ],
+      "note": "Order overview with item total, tax and total. Finish completes the order."
+    },
+    {
+      "name": "cart_two_items",
+      "path": "/cart.html",
+      "ready": "[data-test=\"cart-list\"]",
+      "before": [
+        {
+          "action": "goto",
+          "path": "/inventory.html"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"add-to-cart-sauce-labs-backpack\"]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"add-to-cart-sauce-labs-bike-light\"]"
+        }
+      ],
+      "note": "Cart holding two items, so each item's own remove control is an observed selector. Removing an item removes its row; the badge counts remaining items and disappears entirely at zero."
+    },
+    {
+      "name": "inventory_sorted",
+      "path": "/inventory.html",
+      "ready": "[data-test=\"inventory-list\"]",
+      "before": [
+        {
+          "action": "goto",
+          "path": "/inventory.html"
+        },
+        {
+          "action": "select",
+          "selector": "[data-test=\"product-sort-container\"]",
+          "value": "hilo"
+        },
+        {
+          "action": "wait",
+          "ms": 800
+        }
+      ],
+      "note": "Product list sorted by price, high to low. The sort control's option values are az / za / lohi / hilo, and the currently applied one is echoed in data-test=\"active-option\"."
+    }
+  ]
+}

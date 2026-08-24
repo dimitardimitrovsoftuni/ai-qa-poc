@@ -1,0 +1,119 @@
+{
+  "site": "saucedemo",
+  "feature": "checkout_order",
+  "tests": [
+    {
+      "id": "successful_checkout_flow",
+      "name": "test_successful_checkout_flow",
+      "title": "Complete checkout flow from adding an item to finishing the order",
+      "pages": [
+        "inventory",
+        "cart",
+        "checkout_step_one",
+        "checkout_step_two"
+      ],
+      "preconditions": [
+        "logged in"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/inventory.html"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"add-to-cart-sauce-labs-backpack\"]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"shopping-cart-link\"]"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"cart-list\"]",
+          "note": "cart shows the added item"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"inventory-item-name\"]",
+          "value": "Sauce Labs Backpack"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"checkout\"]"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"firstName\"]",
+          "value": "John"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"lastName\"]",
+          "value": "Doe"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"postalCode\"]",
+          "value": "12345"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"continue\"]"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"checkout-summary-container\"]",
+          "note": "overview page loads"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"inventory-item-name\"]",
+          "value": "Sauce Labs Backpack"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"subtotal-label\"]",
+          "value": "Item total: $29.99"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"tax-label\"]",
+          "value": "Tax: $2.40"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"total-label\"]",
+          "value": "Total: $32.39"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"finish\"]"
+        },
+        {
+          "action": "expect_url",
+          "value": "/checkout-complete.html"
+        }
+      ],
+      "expected": [
+        "item is added to cart and appears in the cart page",
+        "checkout step one accepts valid information and proceeds to overview",
+        "overview shows correct item, subtotal, tax, and total",
+        "clicking finish redirects to the order confirmation page"
+      ]
+    }
+  ],
+  "meta": {
+    "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+    "generatedAt": "2026-08-19T17:41:35.814Z",
+    "pagesUsed": [
+      "cart",
+      "checkout_step_one",
+      "checkout_step_two",
+      "inventory"
+    ],
+    "repairs": 0,
+    "splitFrom": "checkout",
+    "splitReason": "37 steps across 3 tests produced a 13.6k-char generator prompt that free endpoints would not serve. Split locally at zero model cost - the same mitigation as cart/checkout."
+  }
+}

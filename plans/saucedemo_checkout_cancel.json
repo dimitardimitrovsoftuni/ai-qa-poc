@@ -1,0 +1,148 @@
+{
+  "site": "saucedemo",
+  "feature": "checkout_cancel",
+  "tests": [
+    {
+      "id": "cancel_checkout_at_step_one",
+      "name": "test_cancel_checkout_at_step_one",
+      "title": "Cancel button on checkout step one returns to cart with item intact",
+      "pages": [
+        "inventory",
+        "cart",
+        "checkout_step_one"
+      ],
+      "preconditions": [
+        "logged in"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/inventory.html"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"add-to-cart-sauce-labs-backpack\"]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"shopping-cart-link\"]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"checkout\"]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"cancel\"]"
+        },
+        {
+          "action": "expect_url",
+          "value": "/cart.html"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"cart-list\"]"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"inventory-item-name\"]",
+          "value": "Sauce Labs Backpack"
+        }
+      ],
+      "expected": [
+        "cancel returns the user to the cart page",
+        "the previously added item remains in the cart"
+      ]
+    },
+    {
+      "id": "cancel_checkout_at_step_two",
+      "name": "test_cancel_checkout_at_step_two",
+      "title": "Cancel button on checkout step two returns to inventory with cart unchanged",
+      "pages": [
+        "inventory",
+        "cart",
+        "checkout_step_one",
+        "checkout_step_two"
+      ],
+      "preconditions": [
+        "logged in"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/inventory.html"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"add-to-cart-sauce-labs-backpack\"]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"shopping-cart-link\"]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"checkout\"]"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"firstName\"]",
+          "value": "John"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"lastName\"]",
+          "value": "Doe"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"postalCode\"]",
+          "value": "12345"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"continue\"]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"cancel\"]"
+        },
+        {
+          "action": "expect_url",
+          "value": "/inventory.html"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"shopping-cart-badge\"]"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"shopping-cart-badge\"]",
+          "value": "1"
+        }
+      ],
+      "expected": [
+        "cancel on overview returns to the inventory page",
+        "cart badge still shows the item count (1)"
+      ]
+    }
+  ],
+  "meta": {
+    "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+    "generatedAt": "2026-08-19T17:41:35.814Z",
+    "pagesUsed": [
+      "cart",
+      "checkout_step_one",
+      "checkout_step_two",
+      "inventory"
+    ],
+    "repairs": 0,
+    "splitFrom": "checkout",
+    "splitReason": "37 steps across 3 tests produced a 13.6k-char generator prompt that free endpoints would not serve. Split locally at zero model cost - the same mitigation as cart/checkout.",
+    "supersededBy": [
+      "saucedemo_cancel_checkout_step_one.json",
+      "saucedemo_cancel_checkout_step_two.json"
+    ],
+    "supersededNote": "Deduplicated 2026-08-22. These three plans were written on different days and overlap almost entirely: the union of their ten test entries is five distinct tests, and three of those five were already in the suite and green (none here). Only the two cancel-checkout tests were new, and they are now one plan each. Kept for the record; generate from the split plans instead."
+  }
+}

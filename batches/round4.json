@@ -1,0 +1,42 @@
+[
+  {
+    "site": "practicesoftwaretesting",
+    "feature": "account area navigation",
+    "plan": "plans/practicesoftwaretesting_account_area_navigation.json"
+  },
+  {
+    "site": "saucedemo",
+    "feature": "session menu",
+    "pages": "inventory,login",
+    "maxTests": 3,
+    "notes": "The burger menu holds All Items, About, Logout and Reset App State. Its links sit in the DOM even while the menu is closed, so their presence proves nothing — click the toggle first. Logout returns to the sign-in form; Reset App State empties the cart, and the badge stops existing entirely at zero items."
+  },
+  {
+    "site": "saucedemo",
+    "feature": "checkout validation",
+    "pages": "cart,checkout_step_one",
+    "maxTests": 3,
+    "notes": "Continuing from the address form with a missing field shows an error banner naming that field. Assert on the banner's message text, and remember it is the same data-test=\"error\" element the sign-in form uses."
+  },
+  {
+    "site": "practicesoftwaretesting",
+    "feature": "search filters and reset",
+    "pages": "home,search_results",
+    "maxTests": 3,
+    "notes": "Clearing a search restores the full catalogue. The product-name selector matches every card, so assert to_have_count for how many results a term returns, and chain .first where a single name is asserted."
+  },
+  {
+    "site": "practicesoftwaretesting",
+    "feature": "customer profile",
+    "pages": "account,profile",
+    "maxTests": 2,
+    "notes": "The profile page shows the signed-in customer's stored details in editable fields. Assert the fields carry the seeded account's values; do NOT save any change, because it would alter the shared demo account."
+  },
+  {
+    "site": "practicesoftwaretesting",
+    "feature": "invoices and favourites",
+    "pages": "account,invoices,favorites",
+    "maxTests": 3,
+    "notes": "Both pages are reached from the account area and each has its own heading. They may legitimately be empty for the seeded account — assert on the page's own identity and on the presence of its list container, never on a row count that depends on data."
+  }
+]

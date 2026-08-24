@@ -1,0 +1,58 @@
+{
+  "site": "practicesoftwaretesting",
+  "feature": "cart total calculates correctly",
+  "tests": [
+    {
+      "id": "cart_total_calculates_correctly",
+      "name": "test_cart_total_calculates_correctly",
+      "title": "Cart total reflects quantity changes",
+      "pages": [
+        "cart"
+      ],
+      "preconditions": [],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/checkout"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"product-quantity\"]",
+          "value": "3"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"line-price\"]",
+          "note": "Line price updates"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"line-price\"]",
+          "value": "$42.45"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"cart-total\"]",
+          "note": "Cart total updates"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"cart-total\"]",
+          "value": "$42.45"
+        }
+      ],
+      "expected": [
+        "Cart total reflects updated quantity"
+      ]
+    }
+  ],
+  "meta": {
+    "pagesUsed": [
+      "cart"
+    ],
+    "repairs": 0,
+    "splitFrom": "cart contents",
+    "splitReason": "One test per plan — the shape that has generated cleanly on the first attempt all day.",
+    "note": "The cart page also exposes [data-test=\"product-title\"], [data-test=\"product-quantity\"], [data-test=\"product-price\"], [data-test=\"line-price\"], [data-test=\"cart-total\"]. A plan that wants to assert on line-price or cart-total has to name them in its own steps: the generator only allows selectors the plan sanctioned, and this plan originally asserted on totals it never listed."
+  }
+}

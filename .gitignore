@@ -1,0 +1,17 @@
+node_modules/
+.env
+.ai_context/
+reports/
+__pycache__/
+.pytest_cache/
+*.pre_heal
+.venv/
+usage.json
+gen.log
+plan.log
+gen2.log
+batch.log
+canary.log
+
+# LinkedIn draft — not part of the project
+docs/linkedin_article.*

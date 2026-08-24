@@ -1,0 +1,52 @@
+[
+  {
+    "site": "saucedemo",
+    "feature": "product sorting",
+    "pages": "inventory,inventory_sorted",
+    "maxTests": 3,
+    "notes": "The sort control is a native select whose option values are az, za, lohi and hilo. Assert on the applied option label shown in data-test=\"active-option\" and on the first product name in the list, which changes with the order. Do not assert on a whole ordered list of names.",
+    "plan": "plans/saucedemo_product_sorting.json"
+  },
+  {
+    "site": "saucedemo",
+    "feature": "cart with several items",
+    "pages": "inventory,cart_two_items",
+    "maxTests": 3,
+    "notes": "The harness starts every test with an empty cart. The badge element does not exist at all when the cart is empty, and each product has its own add and remove control. Assert on the badge count and on the number of rows in the cart."
+  },
+  {
+    "site": "saucedemo",
+    "feature": "product detail",
+    "pages": "inventory,item_detail",
+    "maxTests": 3,
+    "notes": "A product title on the list opens its detail page, which repeats the name, description and price and offers its own add-to-cart control plus a back link to the list."
+  },
+  {
+    "site": "practicesoftwaretesting",
+    "feature": "registration validation",
+    "pages": "register,register_error",
+    "maxTests": 3,
+    "notes": "Assert on the per-field validation alerts and their message text. Never submit a registration that would actually create an account: only test the rejected cases."
+  },
+  {
+    "site": "practicesoftwaretesting",
+    "feature": "password reset request",
+    "pages": "forgot_password,forgot_password_error",
+    "maxTests": 2,
+    "notes": "Assert on the required-field alert for an empty submission. Do not request a reset for a real address."
+  },
+  {
+    "site": "practicesoftwaretesting",
+    "feature": "catalogue sorting",
+    "pages": "home",
+    "maxTests": 3,
+    "notes": "The sort control takes the option values name,asc / name,desc / price,desc / price,asc. Assert on the first product name, which changes with the order, and on the number of product cards staying the same."
+  },
+  {
+    "site": "practicesoftwaretesting",
+    "feature": "account area navigation",
+    "pages": "account,favorites,profile,invoices,messages",
+    "maxTests": 3,
+    "notes": "The account page links to Favorites, Profile, Invoices and Messages. Each opens its own page with its own title. Assert on the destination title, not merely on the link being visible."
+  }
+]

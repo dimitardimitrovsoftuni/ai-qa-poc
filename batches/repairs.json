@@ -1,0 +1,30 @@
+[
+  {
+    "site": "saucedemo",
+    "feature": "cart with several items",
+    "pages": "inventory,cart_two_items",
+    "maxTests": 3,
+    "notes": "Every method a test calls must exist on its page object \u2014 add it in the same reply. The harness starts each test with an empty cart. An add control is REPLACED by a remove control once clicked, so never assert that the add button changed its text. The badge does not exist at all at zero items."
+  },
+  {
+    "site": "saucedemo",
+    "feature": "product detail",
+    "pages": "inventory,item_detail",
+    "maxTests": 3,
+    "notes": "The detail page's add-to-cart control is REPLACED by a separate remove control once clicked \u2014 assert that the remove control appears and the add control is gone, never that one element changed its text."
+  },
+  {
+    "site": "practicesoftwaretesting",
+    "feature": "registration validation",
+    "pages": "register,register_error",
+    "maxTests": 3,
+    "notes": "The form validates EVERY required field on submit, so a partial fill still shows the other fields' alerts. Assert only on the alert for the field under test; never assert that another field's alert is absent unless that field was filled. Never submit a registration that would create an account."
+  },
+  {
+    "site": "practicesoftwaretesting",
+    "feature": "catalogue sorting",
+    "pages": "home",
+    "maxTests": 3,
+    "notes": "The product-name selector matches every card on the page, so a singular assertion on it raises a Playwright strict-mode violation \u2014 chain .first where the attribute is defined, or assert to_have_count. The sort control takes the option values name,asc / name,desc / price,desc / price,asc."
+  }
+]

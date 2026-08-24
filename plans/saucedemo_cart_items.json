@@ -1,0 +1,131 @@
+{
+  "site": "saucedemo",
+  "feature": "cart items",
+  "tests": [
+    {
+      "id": "cart_remove_all_items_badge_disappears",
+      "name": "test_cart_remove_all_items_badge_disappears",
+      "title": "Removing all items from cart makes the badge disappear entirely",
+      "pages": [
+        "inventory",
+        "cart_two_items"
+      ],
+      "preconditions": [
+        "logged in",
+        "empty cart"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/inventory.html"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"add-to-cart-sauce-labs-backpack\"]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"add-to-cart-sauce-labs-bike-light\"]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"shopping-cart-link\"]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"remove-sauce-labs-backpack\"]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"remove-sauce-labs-bike-light\"]"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"shopping-cart-badge\"]"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"remove-sauce-labs-backpack\"]"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"remove-sauce-labs-bike-light\"]"
+        }
+      ],
+      "expected": [
+        "cart badge is not present when cart becomes empty",
+        "no item remove buttons remain in the cart"
+      ]
+    },
+    {
+      "id": "cart_continue_shopping_returns_to_inventory_with_cart_preserved",
+      "name": "test_cart_continue_shopping_returns_to_inventory_with_cart_preserved",
+      "title": "Continue Shopping returns to inventory page and preserves cart contents",
+      "pages": [
+        "inventory",
+        "cart_two_items"
+      ],
+      "preconditions": [
+        "logged in",
+        "empty cart"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/inventory.html"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"add-to-cart-sauce-labs-backpack\"]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"add-to-cart-sauce-labs-bike-light\"]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"shopping-cart-link\"]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"continue-shopping\"]"
+        },
+        {
+          "action": "expect_url",
+          "value": "/inventory.html"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"shopping-cart-badge\"]",
+          "value": "2"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"remove-sauce-labs-backpack\"]",
+          "note": "remove button visible on inventory for added item"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"remove-sauce-labs-bike-light\"]",
+          "note": "remove button visible on inventory for added item"
+        }
+      ],
+      "expected": [
+        "Continue Shopping navigates back to /inventory.html",
+        "cart badge still shows 2",
+        "inventory page shows remove buttons for the items that were added"
+      ]
+    }
+  ],
+  "meta": {
+    "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+    "generatedAt": "2026-08-21T11:07:22.970Z",
+    "pagesUsed": [
+      "cart_two_items",
+      "inventory"
+    ],
+    "repairs": 0,
+    "splitFrom": "cart with several items",
+    "splitReason": "Trimmed from 3 tests to 2 LOCALLY, at no model cost, to test whether a smaller generation request is accepted first time. The probes showed a repair is both larger and riskier than the generation it repairs, so the goal is first-attempt acceptance."
+  }
+}

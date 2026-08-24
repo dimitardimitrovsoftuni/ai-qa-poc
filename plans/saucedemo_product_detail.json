@@ -1,0 +1,190 @@
+{
+  "site": "saucedemo",
+  "feature": "product detail",
+  "tests": [
+    {
+      "id": "product_detail_displays_correct_information",
+      "name": "test_product_detail_displays_correct_information",
+      "title": "Product detail page opens and displays correct name, description, and price",
+      "pages": [
+        "inventory",
+        "item_detail"
+      ],
+      "preconditions": [
+        "logged in"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/inventory.html"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"item-4-title-link\"]"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"inventory-item-name\"]",
+          "note": "product name visible on detail page"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"inventory-item-name\"]",
+          "value": "Sauce Labs Backpack"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"inventory-item-desc\"]",
+          "value": "carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection."
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"inventory-item-price\"]",
+          "value": "$29.99"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"back-to-products\"]"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"title\"]",
+          "note": "back on inventory page"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"title\"]",
+          "value": "Products"
+        }
+      ],
+      "expected": [
+        "detail page shows the correct product name",
+        "detail page shows the correct product description",
+        "detail page shows the correct product price",
+        "back button returns to inventory page"
+      ]
+    },
+    {
+      "id": "product_detail_add_to_cart_toggles_button",
+      "name": "test_product_detail_add_to_cart_toggles_button",
+      "title": "Adding from the detail page replaces the add control with a remove control",
+      "pages": [
+        "inventory",
+        "item_detail",
+        "item_detail_added"
+      ],
+      "preconditions": [
+        "logged in"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/inventory.html"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"item-4-title-link\"]"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"add-to-cart\"]",
+          "note": "add to cart button present"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"add-to-cart\"]",
+          "value": "Add to cart"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"add-to-cart\"]"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"remove\"]",
+          "note": "the add control is REPLACED by this one, it does not change text"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"add-to-cart\"]",
+          "note": "and the original control is gone, which is what \"replaced\" means"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"back-to-products\"]"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"title\"]",
+          "note": "returned to inventory"
+        }
+      ],
+      "expected": [
+        "the add-to-cart control disappears",
+        "a remove control takes its place",
+        "Back to products returns to the inventory list"
+      ]
+    },
+    {
+      "id": "product_detail_back_button_navigates_to_inventory",
+      "name": "test_product_detail_back_button_navigates_to_inventory",
+      "title": "Back to products button on detail page returns to inventory list",
+      "pages": [
+        "inventory",
+        "item_detail"
+      ],
+      "preconditions": [
+        "logged in"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/inventory.html"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"item-4-title-link\"]"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"back-to-products\"]",
+          "note": "back button present on detail page"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"back-to-products\"]"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"title\"]",
+          "note": "inventory page title visible"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"title\"]",
+          "value": "Products"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"product-sort-container\"]",
+          "note": "sort dropdown present confirming inventory page"
+        }
+      ],
+      "expected": [
+        "back button is visible on product detail page",
+        "clicking back button navigates to inventory page",
+        "inventory page header and sort control are visible"
+      ]
+    }
+  ],
+  "meta": {
+    "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+    "generatedAt": "2026-08-20T17:46:43.159Z",
+    "pagesUsed": [
+      "inventory",
+      "item_detail"
+    ],
+    "repairs": 0,
+    "dataFix": "2026-08-22: the toggle assertion was impossible. SauceDemo REPLACES the detail page control instead of relabelling it, so expect_text on [data-test=\"add-to-cart\"] could only ever fail once the element was gone. The item_detail note said \"REPLACED\" in prose, but the replacement selector was never captured and the planner may only use observed selectors, so the toggle was the only thing it could express. Fixed by capturing the post-add state as its own page (item_detail_added) and asserting the replacement."
+  }
+}

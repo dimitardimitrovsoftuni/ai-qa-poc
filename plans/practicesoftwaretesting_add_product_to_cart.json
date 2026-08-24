@@ -1,0 +1,79 @@
+{
+  "site": "practicesoftwaretesting",
+  "feature": "add product to cart",
+  "tests": [
+    {
+      "id": "add_product_to_cart",
+      "name": "test_add_product_to_cart",
+      "title": "Adding a product to the cart updates the cart quantity and total",
+      "pages": [
+        "product_detail",
+        "product_detail_added",
+        "cart"
+      ],
+      "preconditions": [],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/",
+          "note": "a stable path; the product is reached by clicking"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"product-name\"]",
+          "note": "the first card — chain .first, this selector matches every product"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"add-to-cart\"]"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"cart-quantity\"]",
+          "note": "Cart quantity indicator appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"cart-quantity\"]",
+          "value": "1"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"cart-total\"]",
+          "note": "Cart total updates"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"cart-total\"]",
+          "value": "$28.30"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "#toast-container",
+          "note": "Toast notification appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "#toast-container",
+          "value": "Product added to shopping cart."
+        }
+      ],
+      "expected": [
+        "Cart quantity increases to 1",
+        "Cart total reflects the product price",
+        "Toast notification confirms successful addition"
+      ]
+    }
+  ],
+  "meta": {
+    "pagesUsed": [
+      "product_detail",
+      "product_detail_added",
+      "cart"
+    ],
+    "repairs": 0,
+    "splitFrom": "cart contents",
+    "splitReason": "One test per plan — the shape that has generated cleanly on the first attempt all day.",
+    "note": "The cart page also exposes [data-test=\"product-title\"], [data-test=\"product-quantity\"], [data-test=\"product-price\"], [data-test=\"line-price\"], [data-test=\"cart-total\"]. A plan that wants to assert on line-price or cart-total has to name them in its own steps: the generator only allows selectors the plan sanctioned, and this plan originally asserted on totals it never listed."
+  }
+}

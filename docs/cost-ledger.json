@@ -1,0 +1,1674 @@
+{
+  "note": "Snapshot of the local ledger. Totals are derived from `calls`, which is the only source of truth.",
+  "source": "usage.json",
+  "period": {
+    "from": "2026-08-19T16:02:13.802Z",
+    "to": "2026-08-22T14:20:54.010Z"
+  },
+  "total": {
+    "requests": 148,
+    "promptTokens": 379648,
+    "completionTokens": 320054,
+    "cost": 0,
+    "failed": 23
+  },
+  "days": {
+    "2026-08-19": {
+      "requests": 21,
+      "promptTokens": 84390,
+      "completionTokens": 43135,
+      "cost": 0,
+      "failed": 0
+    },
+    "2026-08-20": {
+      "requests": 40,
+      "promptTokens": 130691,
+      "completionTokens": 69459,
+      "cost": 0,
+      "failed": 0
+    },
+    "2026-08-21": {
+      "requests": 46,
+      "promptTokens": 75236,
+      "completionTokens": 95966,
+      "cost": 0,
+      "failed": 12
+    },
+    "2026-08-22": {
+      "requests": 41,
+      "promptTokens": 89331,
+      "completionTokens": 111494,
+      "cost": 0,
+      "failed": 11
+    }
+  },
+  "byModel": {
+    "poolside/laguna-s-2.1:free": {
+      "requests": 44,
+      "promptTokens": 148350,
+      "completionTokens": 39532,
+      "cost": 0,
+      "failed": 1
+    },
+    "nvidia/nemotron-3-ultra-550b-a55b:free": {
+      "requests": 33,
+      "promptTokens": 111011,
+      "completionTokens": 84623,
+      "cost": 0,
+      "failed": 2
+    },
+    "openrouter/free": {
+      "requests": 14,
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "cost": 0,
+      "failed": 14
+    },
+    "nvidia/nemotron-3-nano-30b-a3b:free": {
+      "requests": 12,
+      "promptTokens": 25905,
+      "completionTokens": 60627,
+      "cost": 0,
+      "failed": 0
+    },
+    "dots-studio/dots-3-note-preview:free": {
+      "requests": 10,
+      "promptTokens": 21387,
+      "completionTokens": 45424,
+      "cost": 0,
+      "failed": 1
+    },
+    "nvidia/nemotron-nano-12b-v2-vl:free": {
+      "requests": 8,
+      "promptTokens": 21141,
+      "completionTokens": 4466,
+      "cost": 0,
+      "failed": 0
+    },
+    "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free": {
+      "requests": 6,
+      "promptTokens": 13232,
+      "completionTokens": 26407,
+      "cost": 0,
+      "failed": 0
+    },
+    "nvidia/nemotron-3-super-120b-a12b:free": {
+      "requests": 4,
+      "promptTokens": 10520,
+      "completionTokens": 20737,
+      "cost": 0,
+      "failed": 0
+    },
+    "nvidia/nemotron-3.5-lightning:free": {
+      "requests": 4,
+      "promptTokens": 5867,
+      "completionTokens": 18878,
+      "cost": 0,
+      "failed": 0
+    },
+    "nvidia/nemotron-nano-9b-v2:free": {
+      "requests": 4,
+      "promptTokens": 9026,
+      "completionTokens": 9984,
+      "cost": 0,
+      "failed": 0
+    },
+    "poolside/laguna-xs-2.1:free": {
+      "requests": 4,
+      "promptTokens": 7096,
+      "completionTokens": 5069,
+      "cost": 0,
+      "failed": 2
+    },
+    "cohere/north-mini-code:free": {
+      "requests": 3,
+      "promptTokens": 2781,
+      "completionTokens": 3915,
+      "cost": 0,
+      "failed": 2
+    },
+    "google/gemma-4-26b-a4b-it:free": {
+      "requests": 1,
+      "promptTokens": 3246,
+      "completionTokens": 376,
+      "cost": 0,
+      "failed": 0
+    },
+    "openai/gpt-oss-20b:free": {
+      "requests": 1,
+      "promptTokens": 86,
+      "completionTokens": 16,
+      "cost": 0,
+      "failed": 1
+    }
+  },
+  "byRole": {
+    "generator": {
+      "requests": 105,
+      "promptTokens": 242658,
+      "completionTokens": 230299,
+      "cost": 0,
+      "failed": 16
+    },
+    "planner": {
+      "requests": 29,
+      "promptTokens": 109858,
+      "completionTokens": 88639,
+      "cost": 0,
+      "failed": 1
+    },
+    "ping": {
+      "requests": 10,
+      "promptTokens": 328,
+      "completionTokens": 133,
+      "cost": 0,
+      "failed": 5
+    },
+    "healer": {
+      "requests": 4,
+      "promptTokens": 26804,
+      "completionTokens": 983,
+      "cost": 0,
+      "failed": 1
+    }
+  },
+  "calls": [
+    {
+      "ts": "2026-08-19T16:02:13.802Z",
+      "role": "ping",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 47,
+      "completionTokens": 3,
+      "cost": 0,
+      "ms": 2118,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-19T16:06:51.035Z",
+      "role": "planner",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "promptTokens": 4998,
+      "completionTokens": 2328,
+      "cost": 0,
+      "ms": 54868,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-19T16:11:47.086Z",
+      "role": "planner",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "promptTokens": 4998,
+      "completionTokens": 3801,
+      "cost": 0,
+      "ms": 80701,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-19T16:12:28.360Z",
+      "role": "planner",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "promptTokens": 1839,
+      "completionTokens": 2591,
+      "cost": 0,
+      "ms": 41238,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-19T16:23:04.295Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 3499,
+      "completionTokens": 917,
+      "cost": 0,
+      "ms": 22584,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-19T16:36:37.368Z",
+      "role": "healer",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 7393,
+      "completionTokens": 331,
+      "cost": 0,
+      "ms": 9445,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-19T17:26:26.618Z",
+      "role": "planner",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "promptTokens": 7972,
+      "completionTokens": 2162,
+      "cost": 0,
+      "ms": 21346,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-19T17:27:12.085Z",
+      "role": "planner",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "promptTokens": 2466,
+      "completionTokens": 3369,
+      "cost": 0,
+      "ms": 45447,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-19T17:27:53.891Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 3430,
+      "completionTokens": 970,
+      "cost": 0,
+      "ms": 24318,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-19T17:41:35.779Z",
+      "role": "planner",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "promptTokens": 7721,
+      "completionTokens": 5775,
+      "cost": 0,
+      "ms": 83012,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-19T17:52:28.037Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-nano-12b-v2-vl:free",
+      "promptTokens": 3770,
+      "completionTokens": 1437,
+      "cost": 0,
+      "ms": 35494,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-19T17:53:02.764Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 2347,
+      "completionTokens": 1189,
+      "cost": 0,
+      "ms": 34711,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-19T17:53:34.850Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 4222,
+      "completionTokens": 1347,
+      "cost": 0,
+      "ms": 32076,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-19T18:20:07.456Z",
+      "role": "generator",
+      "model": "poolside/laguna-xs-2.1:free",
+      "promptTokens": 4610,
+      "completionTokens": 3816,
+      "cost": 0,
+      "ms": 58801,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-19T18:28:15.907Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 6092,
+      "completionTokens": 2417,
+      "cost": 0,
+      "ms": 49018,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-19T18:35:52.449Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 3285,
+      "completionTokens": 1088,
+      "cost": 0,
+      "ms": 34969,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-19T18:37:52.028Z",
+      "role": "planner",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "promptTokens": 2192,
+      "completionTokens": 2225,
+      "cost": 0,
+      "ms": 20397,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-19T18:39:04.418Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 2915,
+      "completionTokens": 836,
+      "cost": 0,
+      "ms": 26767,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-19T18:43:41.619Z",
+      "role": "planner",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "promptTokens": 3642,
+      "completionTokens": 2743,
+      "cost": 0,
+      "ms": 58028,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-19T18:44:24.738Z",
+      "role": "planner",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "promptTokens": 2938,
+      "completionTokens": 2313,
+      "cost": 0,
+      "ms": 43091,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-19T18:45:22.305Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 4014,
+      "completionTokens": 1477,
+      "cost": 0,
+      "ms": 30040,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T10:24:20.739Z",
+      "role": "planner",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "promptTokens": 4094,
+      "completionTokens": 2900,
+      "cost": 0,
+      "ms": 59836,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T10:24:47.908Z",
+      "role": "planner",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "promptTokens": 960,
+      "completionTokens": 960,
+      "cost": 0,
+      "ms": 27147,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T10:27:36.410Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 2151,
+      "completionTokens": 604,
+      "cost": 0,
+      "ms": 16289,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T10:29:53.371Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 3295,
+      "completionTokens": 988,
+      "cost": 0,
+      "ms": 16830,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T10:35:28.935Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 3433,
+      "completionTokens": 1755,
+      "cost": 0,
+      "ms": 35162,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T11:13:37.049Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 3485,
+      "completionTokens": 1830,
+      "cost": 0,
+      "ms": 33028,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T11:14:18.494Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 352,
+      "completionTokens": 1462,
+      "cost": 0,
+      "ms": 41428,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T11:15:22.114Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 1790,
+      "completionTokens": 2352,
+      "cost": 0,
+      "ms": 63609,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T17:21:44.491Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 3579,
+      "completionTokens": 554,
+      "cost": 0,
+      "ms": 18170,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T17:22:16.581Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 393,
+      "completionTokens": 1119,
+      "cost": 0,
+      "ms": 32077,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T17:22:36.809Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 514,
+      "completionTokens": 746,
+      "cost": 0,
+      "ms": 20220,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T17:28:45.310Z",
+      "role": "planner",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "promptTokens": 7515,
+      "completionTokens": 3299,
+      "cost": 0,
+      "ms": 62724,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T17:29:10.572Z",
+      "role": "planner",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "promptTokens": 1000,
+      "completionTokens": 929,
+      "cost": 0,
+      "ms": 25250,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T17:29:23.231Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 2704,
+      "completionTokens": 503,
+      "cost": 0,
+      "ms": 12325,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T17:32:50.951Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 279,
+      "completionTokens": 880,
+      "cost": 0,
+      "ms": 27697,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T17:33:02.922Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 428,
+      "completionTokens": 418,
+      "cost": 0,
+      "ms": 11944,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T17:35:07.691Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 2704,
+      "completionTokens": 453,
+      "cost": 0,
+      "ms": 8574,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T17:35:35.200Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 3267,
+      "completionTokens": 453,
+      "cost": 0,
+      "ms": 27168,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T17:35:47.782Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 3267,
+      "completionTokens": 453,
+      "cost": 0,
+      "ms": 12240,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T17:36:37.774Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 2704,
+      "completionTokens": 435,
+      "cost": 0,
+      "ms": 11874,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T17:37:47.262Z",
+      "role": "planner",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "promptTokens": 5796,
+      "completionTokens": 3113,
+      "cost": 0,
+      "ms": 68306,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T17:38:08.727Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 3004,
+      "completionTokens": 883,
+      "cost": 0,
+      "ms": 21131,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T17:43:59.714Z",
+      "role": "planner",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "promptTokens": 5044,
+      "completionTokens": 2218,
+      "cost": 0,
+      "ms": 56121,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T17:44:17.028Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 3034,
+      "completionTokens": 804,
+      "cost": 0,
+      "ms": 16978,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T17:44:31.299Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 3946,
+      "completionTokens": 769,
+      "cost": 0,
+      "ms": 14259,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T17:44:46.123Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 3958,
+      "completionTokens": 536,
+      "cost": 0,
+      "ms": 14814,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T17:46:43.149Z",
+      "role": "planner",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "promptTokens": 4663,
+      "completionTokens": 5275,
+      "cost": 0,
+      "ms": 115636,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T17:47:09.414Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 4152,
+      "completionTokens": 950,
+      "cost": 0,
+      "ms": 25841,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T17:47:28.713Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 5206,
+      "completionTokens": 929,
+      "cost": 0,
+      "ms": 19288,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T17:49:24.106Z",
+      "role": "planner",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "promptTokens": 4288,
+      "completionTokens": 8029,
+      "cost": 0,
+      "ms": 114428,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T17:50:21.440Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 5294,
+      "completionTokens": 2768,
+      "cost": 0,
+      "ms": 56992,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T17:50:43.454Z",
+      "role": "planner",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "promptTokens": 2715,
+      "completionTokens": 849,
+      "cost": 0,
+      "ms": 21205,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T17:53:54.562Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 4497,
+      "completionTokens": 283,
+      "cost": 0,
+      "ms": 10753,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T17:59:07.003Z",
+      "role": "planner",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "promptTokens": 3107,
+      "completionTokens": 7032,
+      "cost": 0,
+      "ms": 131550,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T18:13:25.025Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-3-super-120b-a12b:free",
+      "promptTokens": 3177,
+      "completionTokens": 7644,
+      "cost": 0,
+      "ms": 127714,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T18:13:37.516Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 3982,
+      "completionTokens": 406,
+      "cost": 0,
+      "ms": 12475,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T18:14:04.699Z",
+      "role": "planner",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "promptTokens": 5320,
+      "completionTokens": 1281,
+      "cost": 0,
+      "ms": 22784,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T18:14:24.639Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 3196,
+      "completionTokens": 905,
+      "cost": 0,
+      "ms": 19572,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T18:14:47.212Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 4245,
+      "completionTokens": 846,
+      "cost": 0,
+      "ms": 22550,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-20T18:15:08.364Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 4153,
+      "completionTokens": 846,
+      "cost": 0,
+      "ms": 20620,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-21T09:59:08.945Z",
+      "role": "planner",
+      "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+      "promptTokens": 5145,
+      "completionTokens": 5556,
+      "cost": 0,
+      "ms": 35697,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-21T09:59:49.371Z",
+      "role": "planner",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "promptTokens": 1429,
+      "completionTokens": 2055,
+      "cost": 0,
+      "ms": 40411,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-21T10:08:29.541Z",
+      "role": "planner",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "promptTokens": 3728,
+      "completionTokens": 2184,
+      "cost": 0,
+      "ms": 78806,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-21T10:14:03.104Z",
+      "role": "ping",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 29,
+      "completionTokens": 2,
+      "cost": 0,
+      "ms": 3104,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-21T10:14:05.030Z",
+      "role": "ping",
+      "model": "poolside/laguna-xs-2.1:free",
+      "promptTokens": 29,
+      "completionTokens": 16,
+      "cost": 0,
+      "ms": 1524,
+      "ok": false
+    },
+    {
+      "ts": "2026-08-21T10:14:08.130Z",
+      "role": "ping",
+      "model": "poolside/laguna-xs-2.1:free",
+      "promptTokens": 29,
+      "completionTokens": 16,
+      "cost": 0,
+      "ms": 1087,
+      "ok": false
+    },
+    {
+      "ts": "2026-08-21T10:14:12.534Z",
+      "role": "ping",
+      "model": "cohere/north-mini-code:free",
+      "promptTokens": 12,
+      "completionTokens": 16,
+      "cost": 0,
+      "ms": 1987,
+      "ok": false
+    },
+    {
+      "ts": "2026-08-21T10:14:15.421Z",
+      "role": "ping",
+      "model": "cohere/north-mini-code:free",
+      "promptTokens": 12,
+      "completionTokens": 16,
+      "cost": 0,
+      "ms": 872,
+      "ok": false
+    },
+    {
+      "ts": "2026-08-21T10:14:32.233Z",
+      "role": "ping",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "promptTokens": 28,
+      "completionTokens": 16,
+      "cost": 0,
+      "ms": 1070,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-21T10:14:35.257Z",
+      "role": "ping",
+      "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+      "promptTokens": 28,
+      "completionTokens": 16,
+      "cost": 0,
+      "ms": 588,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-21T10:15:20.293Z",
+      "role": "ping",
+      "model": "openai/gpt-oss-20b:free",
+      "promptTokens": 86,
+      "completionTokens": 16,
+      "cost": 0,
+      "ms": 6992,
+      "ok": false
+    },
+    {
+      "ts": "2026-08-21T10:15:23.224Z",
+      "role": "ping",
+      "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+      "promptTokens": 28,
+      "completionTokens": 16,
+      "cost": 0,
+      "ms": 927,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-21T10:18:00.921Z",
+      "role": "planner",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "promptTokens": 3728,
+      "completionTokens": 2416,
+      "cost": 0,
+      "ms": 73092,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-21T10:18:26.386Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 3472,
+      "completionTokens": 1327,
+      "cost": 0,
+      "ms": 25135,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-21T11:07:22.952Z",
+      "role": "planner",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "promptTokens": 3436,
+      "completionTokens": 1971,
+      "cost": 0,
+      "ms": 66318,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-21T11:20:22.481Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-3-super-120b-a12b:free",
+      "promptTokens": 3319,
+      "completionTokens": 9718,
+      "cost": 0,
+      "ms": 159582,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-21T11:29:12.415Z",
+      "role": "generator",
+      "model": "openrouter/free",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "cost": 0,
+      "ms": 180010,
+      "ok": false,
+      "error": "This operation was aborted"
+    },
+    {
+      "ts": "2026-08-21T11:35:42.991Z",
+      "role": "generator",
+      "model": "poolside/laguna-xs-2.1:free",
+      "promptTokens": 2428,
+      "completionTokens": 1221,
+      "cost": 0,
+      "ms": 104508,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-21T11:46:21.970Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+      "promptTokens": 3043,
+      "completionTokens": 8605,
+      "cost": 0,
+      "ms": 136449,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-21T12:09:07.754Z",
+      "role": "generator",
+      "model": "openrouter/free",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "cost": 0,
+      "ms": 180019,
+      "ok": false,
+      "error": "This operation was aborted"
+    },
+    {
+      "ts": "2026-08-21T15:53:46.485Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "promptTokens": 3040,
+      "completionTokens": 3737,
+      "cost": 0,
+      "ms": 76717,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-21T16:05:53.271Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "promptTokens": 3044,
+      "completionTokens": 3598,
+      "cost": 0,
+      "ms": 116405,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-21T16:20:21.804Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "promptTokens": 2852,
+      "completionTokens": 2990,
+      "cost": 0,
+      "ms": 31428,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-21T16:27:49.207Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "promptTokens": 2835,
+      "completionTokens": 2340,
+      "cost": 0,
+      "ms": 50350,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-21T16:39:14.882Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "promptTokens": 2879,
+      "completionTokens": 1281,
+      "cost": 0,
+      "ms": 25493,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-21T17:06:28.223Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "cost": 0,
+      "ms": 180007,
+      "ok": false,
+      "error": "This operation was aborted"
+    },
+    {
+      "ts": "2026-08-21T17:18:07.433Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "cost": 0,
+      "ms": 180018,
+      "ok": false,
+      "error": "This operation was aborted"
+    },
+    {
+      "ts": "2026-08-21T17:20:10.562Z",
+      "role": "generator",
+      "model": "google/gemma-4-26b-a4b-it:free",
+      "promptTokens": 3246,
+      "completionTokens": 376,
+      "cost": 0,
+      "ms": 9575,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-21T17:25:39.610Z",
+      "role": "generator",
+      "model": "openrouter/free",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "cost": 0,
+      "ms": 180000,
+      "ok": false,
+      "error": "This operation was aborted"
+    },
+    {
+      "ts": "2026-08-21T17:27:16.855Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-3-super-120b-a12b:free",
+      "promptTokens": 1340,
+      "completionTokens": 1162,
+      "cost": 0,
+      "ms": 13807,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-21T17:35:21.712Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-3.5-lightning:free",
+      "promptTokens": 2861,
+      "completionTokens": 5271,
+      "cost": 0,
+      "ms": 175094,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-21T17:49:43.336Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+      "promptTokens": 2176,
+      "completionTokens": 5399,
+      "cost": 0,
+      "ms": 98487,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-21T17:54:21.863Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+      "promptTokens": 2176,
+      "completionTokens": 4883,
+      "cost": 0,
+      "ms": 34022,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-21T17:54:42.755Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+      "promptTokens": 1286,
+      "completionTokens": 2847,
+      "cost": 0,
+      "ms": 20881,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-21T17:55:18.118Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+      "promptTokens": 1481,
+      "completionTokens": 4439,
+      "cost": 0,
+      "ms": 35354,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-21T18:00:11.255Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+      "promptTokens": 2176,
+      "completionTokens": 7465,
+      "cost": 0,
+      "ms": 133091,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-21T18:01:42.587Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+      "promptTokens": 1365,
+      "completionTokens": 3551,
+      "cost": 0,
+      "ms": 74135,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-21T18:03:57.809Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+      "promptTokens": 1720,
+      "completionTokens": 4082,
+      "cost": 0,
+      "ms": 28970,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-21T18:06:57.431Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "promptTokens": 2172,
+      "completionTokens": 3323,
+      "cost": 0,
+      "ms": 100256,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-21T18:10:40.060Z",
+      "role": "generator",
+      "model": "openrouter/free",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "cost": 0,
+      "ms": 180019,
+      "ok": false,
+      "error": "This operation was aborted"
+    },
+    {
+      "ts": "2026-08-21T18:11:11.388Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-nano-12b-v2-vl:free",
+      "promptTokens": 2011,
+      "completionTokens": 398,
+      "cost": 0,
+      "ms": 18457,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-21T18:21:36.302Z",
+      "role": "generator",
+      "model": "dots-studio/dots-3-note-preview:free",
+      "promptTokens": 1894,
+      "completionTokens": 417,
+      "cost": 0,
+      "ms": 19317,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-21T18:23:37.778Z",
+      "role": "generator",
+      "model": "dots-studio/dots-3-note-preview:free",
+      "promptTokens": 1946,
+      "completionTokens": 459,
+      "cost": 0,
+      "ms": 6549,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-21T18:26:57.818Z",
+      "role": "generator",
+      "model": "openrouter/free",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "cost": 0,
+      "ms": 180011,
+      "ok": false,
+      "error": "This operation was aborted"
+    },
+    {
+      "ts": "2026-08-21T18:27:15.691Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-nano-12b-v2-vl:free",
+      "promptTokens": 1913,
+      "completionTokens": 197,
+      "cost": 0,
+      "ms": 5279,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-21T18:28:22.516Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-3.5-lightning:free",
+      "promptTokens": 814,
+      "completionTokens": 2568,
+      "cost": 0,
+      "ms": 51802,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-22T11:47:54.419Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+      "promptTokens": 2031,
+      "completionTokens": 5244,
+      "cost": 0,
+      "ms": 48179,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-22T11:51:54.358Z",
+      "role": "generator",
+      "model": "openrouter/free",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "cost": 0,
+      "ms": 180018,
+      "ok": false,
+      "error": "This operation was aborted"
+    },
+    {
+      "ts": "2026-08-22T11:52:38.397Z",
+      "role": "generator",
+      "model": "dots-studio/dots-3-note-preview:free",
+      "promptTokens": 2024,
+      "completionTokens": 3952,
+      "cost": 0,
+      "ms": 30707,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-22T11:56:46.122Z",
+      "role": "generator",
+      "model": "openrouter/free",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "cost": 0,
+      "ms": 180031,
+      "ok": false,
+      "error": "This operation was aborted"
+    },
+    {
+      "ts": "2026-08-22T11:57:18.485Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+      "promptTokens": 2136,
+      "completionTokens": 4020,
+      "cost": 0,
+      "ms": 20332,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-22T12:15:54.792Z",
+      "role": "generator",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 5182,
+      "completionTokens": 1046,
+      "cost": 0,
+      "ms": 25537,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-22T12:18:04.953Z",
+      "role": "generator",
+      "model": "dots-studio/dots-3-note-preview:free",
+      "promptTokens": 2403,
+      "completionTokens": 687,
+      "cost": 0,
+      "ms": 7742,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-22T12:22:27.168Z",
+      "role": "healer",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "cost": 0,
+      "ms": 180008,
+      "ok": false,
+      "error": "This operation was aborted"
+    },
+    {
+      "ts": "2026-08-22T12:22:33.097Z",
+      "role": "healer",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 9705,
+      "completionTokens": 326,
+      "cost": 0,
+      "ms": 5926,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-22T12:22:42.622Z",
+      "role": "healer",
+      "model": "poolside/laguna-s-2.1:free",
+      "promptTokens": 9706,
+      "completionTokens": 326,
+      "cost": 0,
+      "ms": 9359,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-22T12:25:23.268Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+      "promptTokens": 2472,
+      "completionTokens": 1324,
+      "cost": 0,
+      "ms": 9109,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-22T12:31:55.806Z",
+      "role": "generator",
+      "model": "openrouter/free",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "cost": 0,
+      "ms": 180017,
+      "ok": false,
+      "error": "This operation was aborted"
+    },
+    {
+      "ts": "2026-08-22T12:32:22.753Z",
+      "role": "generator",
+      "model": "dots-studio/dots-3-note-preview:free",
+      "promptTokens": 3466,
+      "completionTokens": 2940,
+      "cost": 0,
+      "ms": 15569,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-22T12:33:08.523Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-nano-12b-v2-vl:free",
+      "promptTokens": 2810,
+      "completionTokens": 404,
+      "cost": 0,
+      "ms": 20931,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-22T12:47:02.572Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "promptTokens": 2827,
+      "completionTokens": 2409,
+      "cost": 0,
+      "ms": 44945,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-22T12:50:15.156Z",
+      "role": "generator",
+      "model": "openrouter/free",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "cost": 0,
+      "ms": 180011,
+      "ok": false,
+      "error": "This operation was aborted"
+    },
+    {
+      "ts": "2026-08-22T12:50:35.074Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-nano-12b-v2-vl:free",
+      "promptTokens": 901,
+      "completionTokens": 279,
+      "cost": 0,
+      "ms": 7626,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-22T12:52:26.535Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-nano-9b-v2:free",
+      "promptTokens": 987,
+      "completionTokens": 515,
+      "cost": 0,
+      "ms": 11288,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-22T12:54:50.411Z",
+      "role": "generator",
+      "model": "dots-studio/dots-3-note-preview:free",
+      "promptTokens": 974,
+      "completionTokens": 10958,
+      "cost": 0,
+      "ms": 71154,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-22T13:01:09.768Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-3.5-lightning:free",
+      "promptTokens": 1019,
+      "completionTokens": 6264,
+      "cost": 0,
+      "ms": 87568,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-22T13:05:47.052Z",
+      "role": "generator",
+      "model": "cohere/north-mini-code:free",
+      "promptTokens": 2757,
+      "completionTokens": 3883,
+      "cost": 0,
+      "ms": 145886,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-22T13:06:56.772Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-nano-12b-v2-vl:free",
+      "promptTokens": 2847,
+      "completionTokens": 415,
+      "cost": 0,
+      "ms": 18480,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-22T13:10:57.839Z",
+      "role": "generator",
+      "model": "openrouter/free",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "cost": 0,
+      "ms": 180016,
+      "ok": false,
+      "error": "This operation was aborted"
+    },
+    {
+      "ts": "2026-08-22T13:11:47.586Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "promptTokens": 1340,
+      "completionTokens": 1579,
+      "cost": 0,
+      "ms": 37343,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-22T13:18:40.226Z",
+      "role": "generator",
+      "model": "openrouter/free",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "cost": 0,
+      "ms": 180004,
+      "ok": false,
+      "error": "This operation was aborted"
+    },
+    {
+      "ts": "2026-08-22T13:21:52.219Z",
+      "role": "generator",
+      "model": "openrouter/free",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "cost": 0,
+      "ms": 180015,
+      "ok": false,
+      "error": "This operation was aborted"
+    },
+    {
+      "ts": "2026-08-22T13:23:11.510Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+      "promptTokens": 3012,
+      "completionTokens": 3424,
+      "cost": 0,
+      "ms": 67213,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-22T13:24:13.096Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-3.5-lightning:free",
+      "promptTokens": 1173,
+      "completionTokens": 4775,
+      "cost": 0,
+      "ms": 46375,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-22T13:47:06.760Z",
+      "role": "planner",
+      "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+      "promptTokens": 3746,
+      "completionTokens": 9186,
+      "cost": 0,
+      "ms": 68113,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-22T13:47:33.779Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "promptTokens": 2444,
+      "completionTokens": 1001,
+      "cost": 0,
+      "ms": 11630,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-22T13:54:06.592Z",
+      "role": "generator",
+      "model": "openrouter/free",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "cost": 0,
+      "ms": 180015,
+      "ok": false,
+      "error": "This operation was aborted"
+    },
+    {
+      "ts": "2026-08-22T13:55:24.226Z",
+      "role": "generator",
+      "model": "dots-studio/dots-3-note-preview:free",
+      "promptTokens": 2592,
+      "completionTokens": 7333,
+      "cost": 0,
+      "ms": 65052,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-22T14:02:06.984Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-3-super-120b-a12b:free",
+      "promptTokens": 2684,
+      "completionTokens": 2213,
+      "cost": 0,
+      "ms": 66549,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-22T14:06:44.320Z",
+      "role": "planner",
+      "model": "openrouter/free",
+      "promptTokens": 0,
+      "completionTokens": 0,
+      "cost": 0,
+      "ms": 180019,
+      "ok": false,
+      "error": "This operation was aborted"
+    },
+    {
+      "ts": "2026-08-22T14:07:05.145Z",
+      "role": "planner",
+      "model": "nvidia/nemotron-nano-12b-v2-vl:free",
+      "promptTokens": 4439,
+      "completionTokens": 667,
+      "cost": 0,
+      "ms": 20823,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-22T14:07:19.447Z",
+      "role": "planner",
+      "model": "dots-studio/dots-3-note-preview:free",
+      "promptTokens": 939,
+      "completionTokens": 1412,
+      "cost": 0,
+      "ms": 14285,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-22T14:08:50.229Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+      "promptTokens": 2536,
+      "completionTokens": 9195,
+      "cost": 0,
+      "ms": 78168,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-22T14:13:26.480Z",
+      "role": "generator",
+      "model": "dots-studio/dots-3-note-preview:free",
+      "promptTokens": 2516,
+      "completionTokens": 16000,
+      "cost": 0,
+      "ms": 142492,
+      "ok": false
+    },
+    {
+      "ts": "2026-08-22T14:14:21.637Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+      "promptTokens": 2580,
+      "completionTokens": 7782,
+      "cost": 0,
+      "ms": 42514,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-22T14:17:48.162Z",
+      "role": "generator",
+      "model": "nvidia/nemotron-nano-12b-v2-vl:free",
+      "promptTokens": 2450,
+      "completionTokens": 669,
+      "cost": 0,
+      "ms": 53088,
+      "ok": true
+    },
+    {
+      "ts": "2026-08-22T14:20:54.010Z",
+      "role": "generator",
+      "model": "dots-studio/dots-3-note-preview:free",
+      "promptTokens": 2633,
+      "completionTokens": 1266,
+      "cost": 0,
+      "ms": 11797,
+      "ok": true
+    }
+  ]
+}

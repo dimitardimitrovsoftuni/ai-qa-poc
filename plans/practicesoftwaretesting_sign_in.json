@@ -1,0 +1,112 @@
+{
+  "site": "practicesoftwaretesting",
+  "feature": "sign in",
+  "tests": [
+    {
+      "id": "signin_success_with_seeded_customer",
+      "name": "test_signin_success_with_seeded_customer",
+      "title": "Signing in with the seeded customer account reaches the account area",
+      "pages": [
+        "login",
+        "account"
+      ],
+      "preconditions": [
+        "logged out"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/auth/login"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"email\"]",
+          "value": "customer@practicesoftwaretesting.com"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"password\"]",
+          "value": "welcome01"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"login-submit\"]"
+        },
+        {
+          "action": "expect_url",
+          "value": "/account"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"page-title\"]",
+          "note": "account page heading appears"
+        }
+      ],
+      "expected": [
+        "the user is redirected to the account page",
+        "the account page heading 'My account' is visible"
+      ]
+    },
+    {
+      "id": "signin_rejects_wrong_password",
+      "name": "test_signin_rejects_wrong_password",
+      "title": "Signing in with a wrong password shows an error and stays on the form",
+      "pages": [
+        "login",
+        "login_error"
+      ],
+      "preconditions": [
+        "logged out"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/auth/login"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"email\"]",
+          "value": "customer@practicesoftwaretesting.com"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"password\"]",
+          "value": "definitely-wrong"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"login-submit\"]"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"login-error\"]",
+          "note": "error banner appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"login-error\"]",
+          "value": "Invalid email or password"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"login-submit\"]",
+          "note": "still on the form"
+        }
+      ],
+      "expected": [
+        "an error message 'Invalid email or password' is displayed",
+        "the user is not signed in and the login form is still shown"
+      ]
+    }
+  ],
+  "meta": {
+    "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+    "generatedAt": "2026-08-20T10:24:47.928Z",
+    "pagesUsed": [
+      "account",
+      "login",
+      "login_error"
+    ],
+    "repairs": 1
+  }
+}

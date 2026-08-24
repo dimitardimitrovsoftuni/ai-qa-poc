@@ -1,0 +1,233 @@
+{
+  "site": "practicesoftwaretesting",
+  "feature": "product search",
+  "tests": [
+    {
+      "id": "search_returns_matching_products",
+      "name": "test_search_returns_matching_products",
+      "title": "Searching for a substring returns matching products with correct count",
+      "pages": [
+        "home",
+        "search_results"
+      ],
+      "preconditions": [
+        "logged out"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"search-query\"]",
+          "value": "pliers"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"search-submit\"]"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"search-caption\"]",
+          "note": "search completed heading appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"search-term\"]",
+          "value": "pliers"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"search-result-count\"]",
+          "value": "4 products found for 'pliers'"
+        },
+        {
+          "action": "expect_count",
+          "selector": "[data-test=\"product-name\"]",
+          "value": 4
+        }
+      ],
+      "expected": [
+        "search results page shows the searched term",
+        "result count matches the number of product cards displayed",
+        "all returned product names contain the search substring"
+      ]
+    },
+    {
+      "id": "search_no_results_shows_zero_count",
+      "name": "test_search_no_results_shows_zero_count",
+      "title": "Searching for a non-existent term shows zero results and no product cards",
+      "pages": [
+        "home",
+        "search_results"
+      ],
+      "preconditions": [
+        "logged out"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"search-query\"]",
+          "value": "xyz123nonexistent"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"search-submit\"]"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"search-caption\"]",
+          "note": "search completed heading appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"search-term\"]",
+          "value": "xyz123nonexistent"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"search-result-count\"]",
+          "value": "0 products found for 'xyz123nonexistent'"
+        },
+        {
+          "action": "expect_count",
+          "selector": "[data-test=\"product-name\"]",
+          "value": 0
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"product-name\"]",
+          "note": "no product cards rendered"
+        }
+      ],
+      "expected": [
+        "search results page shows the searched term",
+        "result count is zero",
+        "no product cards are displayed"
+      ]
+    },
+    {
+      "id": "search_case_insensitive",
+      "name": "test_search_case_insensitive",
+      "title": "Search is case-insensitive and returns same results for uppercase query",
+      "pages": [
+        "home",
+        "search_results"
+      ],
+      "preconditions": [
+        "logged out"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"search-query\"]",
+          "value": "PLIERS"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"search-submit\"]"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"search-caption\"]",
+          "note": "search completed heading appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"search-term\"]",
+          "value": "PLIERS"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"search-result-count\"]",
+          "value": "4 products found for 'PLIERS'"
+        },
+        {
+          "action": "expect_count",
+          "selector": "[data-test=\"product-name\"]",
+          "value": 4
+        }
+      ],
+      "expected": [
+        "uppercase search returns the same result count as lowercase",
+        "same four products are displayed",
+        "search term in caption reflects the exact case entered"
+      ]
+    },
+    {
+      "id": "search_reset_clears_results",
+      "name": "test_search_reset_clears_results",
+      "title": "Clicking the reset button clears the search and restores the full catalogue",
+      "pages": [
+        "home",
+        "search_results"
+      ],
+      "preconditions": [
+        "logged out"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"search-query\"]",
+          "value": "pliers"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"search-submit\"]"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"search-caption\"]",
+          "note": "search results shown"
+        },
+        {
+          "action": "expect_count",
+          "selector": "[data-test=\"product-name\"]",
+          "value": 4
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"search-reset\"]"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"search-caption\"]",
+          "note": "search completed heading gone"
+        },
+        {
+          "action": "expect_count",
+          "selector": "[data-test=\"product-name\"]",
+          "value": 9,
+          "note": "full catalogue restored (9 products on first page)"
+        }
+      ],
+      "expected": [
+        "reset button clears the search input",
+        "search results heading disappears",
+        "full product catalogue is displayed again with more products than the filtered results"
+      ]
+    }
+  ],
+  "meta": {
+    "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+    "generatedAt": "2026-08-19T17:27:12.108Z",
+    "pagesUsed": [
+      "home",
+      "search_results"
+    ],
+    "repairs": 1
+  }
+}

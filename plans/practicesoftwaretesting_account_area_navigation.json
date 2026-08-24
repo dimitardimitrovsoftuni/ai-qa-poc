@@ -1,0 +1,132 @@
+{
+  "site": "practicesoftwaretesting",
+  "feature": "account area navigation",
+  "tests": [
+    {
+      "id": "account_nav_favorites",
+      "name": "test_account_nav_favorites",
+      "title": "Clicking Favorites link navigates to Favorites page with correct title",
+      "pages": [
+        "account",
+        "favorites"
+      ],
+      "preconditions": [
+        "logged in"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/account"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"nav-favorites\"]"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"page-title\"]",
+          "note": "Favorites page title appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"page-title\"]",
+          "value": "Favorites"
+        }
+      ],
+      "expected": [
+        "the Favorites page loads",
+        "the page title reads 'Favorites'"
+      ]
+    },
+    {
+      "id": "account_nav_profile",
+      "name": "test_account_nav_profile",
+      "title": "Clicking Profile link navigates to Profile page with correct title",
+      "pages": [
+        "account",
+        "profile"
+      ],
+      "preconditions": [
+        "logged in"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/account"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"nav-profile\"]"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"page-title\"]",
+          "note": "Profile page title appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"page-title\"]",
+          "value": "Profile"
+        }
+      ],
+      "expected": [
+        "the Profile page loads",
+        "the page title reads 'Profile'"
+      ]
+    },
+    {
+      "id": "account_nav_invoices",
+      "name": "test_account_nav_invoices",
+      "title": "Clicking Invoices link navigates to Invoices page with correct title",
+      "pages": [
+        "account",
+        "invoices"
+      ],
+      "preconditions": [
+        "logged in"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/account"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"nav-invoices\"]"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"page-title\"]",
+          "note": "Invoices page title appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"page-title\"]",
+          "value": "Invoices"
+        }
+      ],
+      "expected": [
+        "the Invoices page loads",
+        "the page title reads 'Invoices'"
+      ]
+    }
+  ],
+  "meta": {
+    "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+    "generatedAt": "2026-08-20T18:14:04.717Z",
+    "pagesUsed": [
+      "account",
+      "favorites",
+      "invoices",
+      "messages",
+      "profile"
+    ],
+    "repairs": 0,
+    "supersededBy": [
+      "practicesoftwaretesting_favorites_navigation.json",
+      "practicesoftwaretesting_profile_navigation.json",
+      "practicesoftwaretesting_invoices_navigation.json"
+    ],
+    "supersededNote": "Split into one plan per destination - see splitReason in each. Kept for the record; generate from the smaller plans instead."
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "site": "saucedemo",
+  "feature": "product sorting",
+  "tests": [
+    {
+      "id": "sort_by_price_high_to_low",
+      "name": "test_sort_by_price_high_to_low",
+      "title": "Sorting by price high to low updates active option and shows most expensive product first",
+      "pages": [
+        "inventory"
+      ],
+      "preconditions": [
+        "logged in"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/inventory.html"
+        },
+        {
+          "action": "select",
+          "selector": "[data-test=\"product-sort-container\"]",
+          "value": "hilo"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"active-option\"]",
+          "value": "Price (high to low)"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"inventory-item-name\"]",
+          "value": "Sauce Labs Fleece Jacket"
+        }
+      ],
+      "expected": [
+        "the active option label reads \"Price (high to low)\"",
+        "the first product listed is the most expensive item (Sauce Labs Fleece Jacket)"
+      ]
+    },
+    {
+      "id": "sort_by_price_low_to_high",
+      "name": "test_sort_by_price_low_to_high",
+      "title": "Sorting by price low to high updates active option and shows least expensive product first",
+      "pages": [
+        "inventory"
+      ],
+      "preconditions": [
+        "logged in"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/inventory.html"
+        },
+        {
+          "action": "select",
+          "selector": "[data-test=\"product-sort-container\"]",
+          "value": "lohi"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"active-option\"]",
+          "value": "Price (low to high)"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"inventory-item-name\"]",
+          "value": "Sauce Labs Onesie"
+        }
+      ],
+      "expected": [
+        "the active option label reads \"Price (low to high)\"",
+        "the first product listed is the least expensive item (Sauce Labs Onesie)"
+      ]
+    },
+    {
+      "id": "sort_by_name_z_to_a",
+      "name": "test_sort_by_name_z_to_a",
+      "title": "Sorting by name Z to A updates active option and shows last product alphabetically first",
+      "pages": [
+        "inventory"
+      ],
+      "preconditions": [
+        "logged in"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/inventory.html"
+        },
+        {
+          "action": "select",
+          "selector": "[data-test=\"product-sort-container\"]",
+          "value": "za"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"active-option\"]",
+          "value": "Name (Z to A)"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"inventory-item-name\"]",
+          "value": "Test.allTheThings() T-Shirt (Red)"
+        }
+      ],
+      "expected": [
+        "the active option label reads \"Name (Z to A)\"",
+        "the first product listed is the last item alphabetically (Test.allTheThings() T-Shirt (Red))"
+      ]
+    }
+  ],
+  "meta": {
+    "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+    "generatedAt": "2026-08-20T17:29:10.579Z",
+    "pagesUsed": [
+      "inventory",
+      "inventory_sorted"
+    ],
+    "repairs": 1
+  }
+}

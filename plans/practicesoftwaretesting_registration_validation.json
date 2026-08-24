@@ -1,0 +1,461 @@
+{
+  "site": "practicesoftwaretesting",
+  "feature": "registration validation",
+  "tests": [
+    {
+      "id": "registration_empty_submission_shows_all_errors",
+      "name": "test_registration_empty_submission_shows_all_errors",
+      "title": "Submitting an empty registration form shows validation alerts for every required field",
+      "pages": [
+        "register",
+        "register_error"
+      ],
+      "preconditions": [
+        "logged out"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/auth/register"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"register-submit\"]"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"first-name-error\"]",
+          "note": "first name error appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"first-name-error\"]",
+          "value": "First name is required"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"last-name-error\"]",
+          "note": "last name error appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"last-name-error\"]",
+          "value": "Last name is required"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"dob-error\"]",
+          "note": "date of birth error appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"dob-error\"]",
+          "value": "Please enter a valid date in YYYY-MM-DD format. Date of Birth is required"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"country-error\"]",
+          "note": "country error appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"country-error\"]",
+          "value": "Country is required"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"postal_code-error\"]",
+          "note": "postal code error appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"postal_code-error\"]",
+          "value": "Postcode is required"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"house_number-error\"]",
+          "note": "house number error appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"house_number-error\"]",
+          "value": "House number is required"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"street-error\"]",
+          "note": "street error appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"street-error\"]",
+          "value": "Street is required"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"city-error\"]",
+          "note": "city error appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"city-error\"]",
+          "value": "City is required"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"state-error\"]",
+          "note": "state error appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"state-error\"]",
+          "value": "State is required"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"phone-error\"]",
+          "note": "phone error appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"phone-error\"]",
+          "value": "Phone is required."
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"email-error\"]",
+          "note": "email error appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"email-error\"]",
+          "value": "Email is required"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"password-error\"]",
+          "note": "password error appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"password-error\"]",
+          "value": "Password is required Password must be minimal 6 characters long. Password can not include invalid characters."
+        }
+      ],
+      "expected": [
+        "every required field shows a validation alert with the correct message",
+        "the form remains on the registration page"
+      ]
+    },
+    {
+      "id": "registration_missing_email_shows_email_error",
+      "name": "test_registration_missing_email_shows_email_error",
+      "title": "Submitting a registration with all fields valid except email shows only the email validation alert",
+      "pages": [
+        "register",
+        "register_error"
+      ],
+      "preconditions": [
+        "logged out"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/auth/register"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"first-name\"]",
+          "value": "John"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"last-name\"]",
+          "value": "Doe"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"dob\"]",
+          "value": "1990-01-01"
+        },
+        {
+          "action": "select",
+          "selector": "[data-test=\"country\"]",
+          "value": "Albania"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"postal_code\"]",
+          "value": "1000"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"house_number\"]",
+          "value": "42"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"street\"]",
+          "value": "Main Street"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"city\"]",
+          "value": "Tirana"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"state\"]",
+          "value": "Tirana County"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"phone\"]",
+          "value": "0691234567"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"password\"]",
+          "value": "StrongPass123!"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"register-submit\"]"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"email-error\"]",
+          "note": "email error appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"email-error\"]",
+          "value": "Email is required"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"first-name-error\"]",
+          "note": "no first name error"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"last-name-error\"]",
+          "note": "no last name error"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"dob-error\"]",
+          "note": "no dob error"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"country-error\"]",
+          "note": "no country error"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"postal_code-error\"]",
+          "note": "no postal code error"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"house_number-error\"]",
+          "note": "no house number error"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"street-error\"]",
+          "note": "no street error"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"city-error\"]",
+          "note": "no city error"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"state-error\"]",
+          "note": "no state error"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"phone-error\"]",
+          "note": "no phone error"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"password-error\"]",
+          "note": "no password error"
+        }
+      ],
+      "expected": [
+        "only the email validation alert is displayed with the correct message",
+        "all other field validation alerts are absent",
+        "the form remains on the registration page"
+      ]
+    },
+    {
+      "id": "registration_short_password_shows_password_error",
+      "name": "test_registration_short_password_shows_password_error",
+      "title": "Submitting a registration with a too-short password shows the password validation alert",
+      "pages": [
+        "register",
+        "register_error"
+      ],
+      "preconditions": [
+        "logged out"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/auth/register"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"first-name\"]",
+          "value": "John"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"last-name\"]",
+          "value": "Doe"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"dob\"]",
+          "value": "1990-01-01"
+        },
+        {
+          "action": "select",
+          "selector": "[data-test=\"country\"]",
+          "value": "Albania"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"postal_code\"]",
+          "value": "1000"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"house_number\"]",
+          "value": "42"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"street\"]",
+          "value": "Main Street"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"city\"]",
+          "value": "Tirana"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"state\"]",
+          "value": "Tirana County"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"phone\"]",
+          "value": "0691234567"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"email\"]",
+          "value": "john.doe@example.com"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"password\"]",
+          "value": "123"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"register-submit\"]"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"password-error\"]",
+          "note": "password error appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"password-error\"]",
+          "value": "6 characters"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"first-name-error\"]",
+          "note": "no first name error"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"last-name-error\"]",
+          "note": "no last name error"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"dob-error\"]",
+          "note": "no dob error"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"country-error\"]",
+          "note": "no country error"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"postal_code-error\"]",
+          "note": "no postal code error"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"house_number-error\"]",
+          "note": "no house number error"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"street-error\"]",
+          "note": "no street error"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"city-error\"]",
+          "note": "no city error"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"state-error\"]",
+          "note": "no state error"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"phone-error\"]",
+          "note": "no phone error"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"email-error\"]",
+          "note": "no email error"
+        }
+      ],
+      "expected": [
+        "the password validation alert is displayed and mentions the minimum length requirement",
+        "all other field validation alerts are absent",
+        "the form remains on the registration page"
+      ]
+    }
+  ],
+  "meta": {
+    "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+    "generatedAt": "2026-08-20T17:49:24.118Z",
+    "pagesUsed": [
+      "register",
+      "register_error"
+    ],
+    "repairs": 0,
+    "dataFix": "Verified against the live form 2026-08-22. The planner invented plausible field values the application rejects: \"+355691234567\" fails \"Only numbers are allowed\" and \"StrongPass123\" fails \"Password can not include invalid characters\" (a symbol is required). Both produced extra validation errors, so a correct assertion - only the field under test should error - failed for reasons unrelated to the test. The assertions were right; the fixture data was wrong."
+  }
+}

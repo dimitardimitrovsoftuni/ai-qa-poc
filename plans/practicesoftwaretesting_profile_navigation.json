@@ -1,0 +1,53 @@
+{
+  "site": "practicesoftwaretesting",
+  "feature": "profile navigation",
+  "tests": [
+    {
+      "id": "account_nav_profile",
+      "name": "test_account_nav_profile",
+      "title": "Clicking Profile link navigates to Profile page with correct title",
+      "pages": [
+        "account",
+        "profile"
+      ],
+      "preconditions": [
+        "logged in"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/account"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"nav-profile\"]"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"page-title\"]",
+          "note": "Profile page title appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"page-title\"]",
+          "value": "Profile"
+        }
+      ],
+      "expected": [
+        "the Profile page loads",
+        "the page title reads 'Profile'"
+      ]
+    }
+  ],
+  "meta": {
+    "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+    "generatedAt": "2026-08-20T18:14:04.717Z",
+    "pagesUsed": [
+      "account",
+      "profile"
+    ],
+    "repairs": 0,
+    "splitFrom": "account area navigation",
+    "splitReason": "One destination per plan. The combined plan asked for three new page objects, one extension to AccountPage and three tests in a single reply, and the free models available (9B-30B) could not hold that coherently - every attempt dropped or duplicated a different part. Each plan here needs one new page object and one method added to AccountPage."
+  }
+}

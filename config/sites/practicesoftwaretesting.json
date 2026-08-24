@@ -1,0 +1,540 @@
+{
+  "id": "practicesoftwaretesting",
+  "name": "Toolshop (Practice Software Testing)",
+  "baseUrl": "https://practicesoftwaretesting.com",
+  "testsDir": "tests/practicesoftwaretesting",
+  "facts": "Toolshop is a hardware-tool web shop used for test automation practice, backed by a real API and database. Visitors browse a product catalogue that supports free-text search, sorting by name or price, and filters by category, brand and price range. Opening a product shows its detail page, from where it can be added to the cart; checkout requires being signed in. Signed-in customers get an account area with favourites, profile, invoices and messages. Because the catalogue comes from a seeded database, product names and prices are stable but the ids in the markup are not. Seeded accounts exist for a customer and an administrator. The catalogue sort control (data-test=\"sort\") takes these option values: name,asc / name,desc / price,desc / price,asc / co2_rating,asc / co2_rating,desc. Both the contact and the registration form validate EVERY required field on submit, so filling only some of them still shows the remaining fields' alerts. A test that fills two fields and asserts the other alerts are absent will fail. Assert only on the field under test, or fill every other required field first.",
+  "auth": {
+    "loginPath": "/auth/login",
+    "credentials": {
+      "user": "TOOLSHOP_USER",
+      "password": "TOOLSHOP_PASS"
+    },
+    "steps": [
+      {
+        "action": "fill",
+        "selector": "[data-test=\"email\"]",
+        "value": "$user"
+      },
+      {
+        "action": "fill",
+        "selector": "[data-test=\"password\"]",
+        "value": "$password"
+      },
+      {
+        "action": "click",
+        "selector": "[data-test=\"login-submit\"]"
+      }
+    ],
+    "readySelector": "[data-test=\"page-title\"]"
+  },
+  "unstableSelectors": [
+    "product-[A-Z0-9]{20,}",
+    "category-[A-Z0-9]{20,}",
+    "brand-[A-Z0-9]{20,}"
+  ],
+  "pages": [
+    {
+      "name": "login",
+      "path": "/auth/login",
+      "auth": false,
+      "ready": "[data-test=\"login-submit\"]",
+      "note": "Sign-in form. Also offers registration, password reset and Google sign-in."
+    },
+    {
+      "name": "login_error",
+      "auth": false,
+      "ready": "[data-test=\"login-error\"]",
+      "before": [
+        {
+          "action": "goto",
+          "path": "/auth/login"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"email\"]",
+          "value": "$user"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"password\"]",
+          "value": "definitely-wrong"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"login-submit\"]"
+        }
+      ],
+      "note": "Rejected sign-in. No path on purpose: a navigation would wipe the error out."
+    },
+    {
+      "name": "home",
+      "path": "/",
+      "auth": false,
+      "ready": "[data-test=\"product-name\"]",
+      "note": "Product catalogue: search box, sort dropdown, category/brand/price filters, and a grid of product cards. The grid arrives from the API after the page shell, and while it loads the app renders SKELETON cards that already carry class \"card\" - so readiness must be judged on [data-test=\"product-name\"], which only a real card has."
+    },
+    {
+      "name": "search_results",
+      "auth": false,
+      "ready": ".card",
+      "before": [
+        {
+          "action": "goto",
+          "path": "/"
+        },
+        {
+          "action": "wait",
+          "selector": "[data-test=\"product-name\"]"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"search-query\"]",
+          "value": "pliers"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"search-submit\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 2000
+        }
+      ],
+      "note": "Catalogue filtered by a free-text search for \"pliers\". Shows the search-completed heading and the reset control."
+    },
+    {
+      "name": "account",
+      "path": "/account",
+      "auth": true,
+      "ready": "[data-test=\"page-title\"]",
+      "note": "Signed-in customer area with links to Favorites, Profile, Invoices and Messages. Reaching it at all proves a signed-in session; when signed out the app redirects to the sign-in form."
+    },
+    {
+      "name": "contact",
+      "path": "/contact",
+      "auth": false,
+      "ready": "[data-test=\"contact-submit\"]",
+      "note": "Contact form with required fields and a message length rule — a good source of client-side validation tests."
+    },
+    {
+      "name": "contact_error",
+      "auth": false,
+      "ready": "[data-test=\"message-error\"]",
+      "before": [
+        {
+          "action": "goto",
+          "path": "/contact"
+        },
+        {
+          "action": "wait",
+          "selector": "[data-test=\"contact-submit\"]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"contact-submit\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 1500
+        }
+      ],
+      "note": "Contact form after submitting it empty: one alert per required field, each with its own message (First name is required, ...). Captured because the clean form has NO error elements at all, and a planner cannot assert on a state nobody showed it - the first attempt at this feature produced three tests that all passed no matter what the form did. A short wait after the click is needed: the alerts do not all render in the same frame, and the first capture caught only two of the five."
+    },
+    {
+      "name": "register",
+      "path": "/auth/register",
+      "auth": false,
+      "ready": "[data-test=\"register-submit\"]",
+      "note": "Account registration form: first/last name, date of birth, full address (postcode, house number, street, city, state, country), phone, email, password."
+    },
+    {
+      "name": "register_error",
+      "auth": false,
+      "ready": "[data-test=\"register-submit\"]",
+      "before": [
+        {
+          "action": "goto",
+          "path": "/auth/register"
+        },
+        {
+          "action": "wait",
+          "selector": "[data-test=\"register-submit\"]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"register-submit\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 1500
+        }
+      ],
+      "note": "Registration form submitted empty: one validation alert per required field, all of them at once. Partially filling the form does not clear the alerts for the fields still empty, so a test asserting a specific alert is absent must have filled that field."
+    },
+    {
+      "name": "forgot_password",
+      "path": "/auth/forgot-password",
+      "auth": false,
+      "ready": "[data-test=\"forgot-password-submit\"]",
+      "note": "Password reset request: a single email field and a submit button."
+    },
+    {
+      "name": "forgot_password_error",
+      "auth": false,
+      "ready": "[data-test=\"forgot-password-submit\"]",
+      "before": [
+        {
+          "action": "goto",
+          "path": "/auth/forgot-password"
+        },
+        {
+          "action": "wait",
+          "selector": "[data-test=\"forgot-password-submit\"]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"forgot-password-submit\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 1500
+        }
+      ],
+      "note": "Password reset submitted with an empty email: shows the required-field alert."
+    },
+    {
+      "name": "favorites",
+      "path": "/account/favorites",
+      "auth": true,
+      "ready": "[data-test=\"page-title\"]",
+      "note": "Saved products for the signed-in customer. Reached from the account area; captured so its heading is an observed fact rather than a guess."
+    },
+    {
+      "name": "profile",
+      "path": "/account/profile",
+      "auth": true,
+      "ready": "[data-test=\"page-title\"]",
+      "note": "Editable profile details for the signed-in customer. Reached from the account area; captured so its heading is an observed fact rather than a guess."
+    },
+    {
+      "name": "invoices",
+      "path": "/account/invoices",
+      "auth": true,
+      "ready": "[data-test=\"page-title\"]",
+      "note": "Past orders for the signed-in customer, one row per invoice. Reached from the account area; captured so its heading is an observed fact rather than a guess."
+    },
+    {
+      "name": "messages",
+      "path": "/account/messages",
+      "auth": true,
+      "ready": "[data-test=\"page-title\"]",
+      "note": "Support messages for the signed-in customer. Reached from the account area; captured so its heading is an observed fact rather than a guess."
+    },
+    {
+      "name": "product_detail",
+      "ready": "[data-test=\"add-to-cart\"]",
+      "before": [
+        {
+          "action": "goto",
+          "path": "/"
+        },
+        {
+          "action": "wait",
+          "ms": 1200
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"product-name\"] >> nth=0"
+        }
+      ],
+      "note": "A single product, reached by clicking the first card - the product URL carries a ULID, which this site declares unstable, so navigating by path would break at the next reseed. Has its own add-to-cart, a quantity stepper (quantity / increase-quantity), unit-price and add-to-favorites. The name is in the h1 as well as data-test=\"product-name\"."
+    },
+    {
+      "name": "product_detail_added",
+      "ready": "[data-test=\"cart-quantity\"]",
+      "before": [
+        {
+          "action": "goto",
+          "path": "/"
+        },
+        {
+          "action": "wait",
+          "ms": 1200
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"product-name\"] >> nth=0"
+        },
+        {
+          "action": "wait",
+          "ms": 1500
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"add-to-cart\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 1500
+        }
+      ],
+      "note": "The product page AFTER adding to the cart. Unlike SauceDemo, this site does NOT replace or relabel the add-to-cart button - it stays, still reading \"Add to cart\". What changes is that data-test=\"cart-quantity\" appears in the header and a toast says \"Product added to shopping cart.\" Captured because neither of those exists on the page before the click, so a plan written from product_detail alone can only assert something about the button, and the only thing left to say about it is wrong. Readiness is cart-quantity, which is true only after the click."
+    },
+    {
+      "name": "cart",
+      "path": "/checkout",
+      "ready": "[data-test=\"cart-total\"]",
+      "before": [
+        {
+          "action": "goto",
+          "path": "/"
+        },
+        {
+          "action": "wait",
+          "ms": 1200
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"product-name\"] >> nth=0"
+        },
+        {
+          "action": "wait",
+          "ms": 1500
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"add-to-cart\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 1500
+        }
+      ],
+      "note": "Step 1 of the checkout wizard, holding one item: product-title, product-quantity (an input, whose value is a DOM property and not an attribute), product-price, line-price, cart-total, and proceed-1. IMPORTANT: all four wizard steps render their fields into the DOM at once and hide the ones not yet reached - country, payment-method and finish are all present here and invisible. Visibility, not presence, is what tells the steps apart."
+    },
+    {
+      "name": "checkout_signed_in",
+      "ready": "[data-test=\"proceed-2\"]",
+      "before": [
+        {
+          "action": "goto",
+          "path": "/"
+        },
+        {
+          "action": "wait",
+          "ms": 1200
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"product-name\"] >> nth=0"
+        },
+        {
+          "action": "wait",
+          "ms": 1500
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"add-to-cart\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 1500
+        },
+        {
+          "action": "goto",
+          "path": "/checkout"
+        },
+        {
+          "action": "wait",
+          "ms": 2000
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"proceed-1\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 2000
+        }
+      ],
+      "note": "Step 2 of the wizard for a session that is already signed in. No path: navigating would reset the wizard to step 1. proceed-2 only exists once this step renders, which makes it a readiness marker that cannot be satisfied by the previous step."
+    },
+    {
+      "name": "checkout_address",
+      "ready": "[data-test=\"country\"]",
+      "before": [
+        {
+          "action": "goto",
+          "path": "/"
+        },
+        {
+          "action": "wait",
+          "ms": 1200
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"product-name\"] >> nth=0"
+        },
+        {
+          "action": "wait",
+          "ms": 1500
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"add-to-cart\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 1500
+        },
+        {
+          "action": "goto",
+          "path": "/checkout"
+        },
+        {
+          "action": "wait",
+          "ms": 2000
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"proceed-1\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 2000
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"proceed-2\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 2000
+        }
+      ],
+      "note": "Step 3, billing address: country (a select), postal_code, house_number, street, city, state, and proceed-3. The postcode lookup hint appears here too."
+    },
+    {
+      "name": "checkout_payment",
+      "ready": "[data-test=\"payment-method\"]",
+      "before": [
+        {
+          "action": "goto",
+          "path": "/"
+        },
+        {
+          "action": "wait",
+          "ms": 1200
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"product-name\"] >> nth=0"
+        },
+        {
+          "action": "wait",
+          "ms": 1500
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"add-to-cart\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 1500
+        },
+        {
+          "action": "goto",
+          "path": "/checkout"
+        },
+        {
+          "action": "wait",
+          "ms": 2000
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"proceed-1\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 2000
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"proceed-2\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 2000
+        },
+        {
+          "action": "select",
+          "selector": "[data-test=\"country\"]",
+          "value": "Albania"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"postal_code\"]",
+          "value": "1000"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"house_number\"]",
+          "value": "42"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"street\"]",
+          "value": "Main Street"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"city\"]",
+          "value": "Tirana"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"state\"]",
+          "value": "Tirana County"
+        },
+        {
+          "action": "wait",
+          "ms": 800
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"proceed-3\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 2000
+        }
+      ],
+      "note": "Step 4, payment: payment-method is a select (Bank Transfer, Cash on Delivery, Credit Card, Buy Now Pay Later, Gift Card) and finish confirms the order. The address values used to reach this step are the verified ones from sampleData."
+    }
+  ],
+  "sampleData": {
+    "//": "Values the live application accepts, verified by submitting the form. Use these for any field that is not the subject of the test, so a test never fails on incidental validation. Inventing plausible data cost two red tests.",
+    "phone": "0691234567",
+    "password": "StrongPass123!",
+    "email": "john.doe@example.com",
+    "postalCode": "1000",
+    "houseNumber": "42",
+    "dateOfBirth": "1990-01-01"
+  },
+  "resetState": [
+    {
+      "//": "There was no resetState at all, so every test inherited whatever the previous one left in the cart. It only surfaced when a test asserted an absolute count and found 2 instead of 1 - a shared-session defect that had been latent for the whole suite.",
+      "action": "removeStorage",
+      "value": "cart_quantity,cart_id"
+    },
+    {
+      "action": "goto",
+      "path": "/"
+    },
+    {
+      "action": "wait",
+      "ms": 800
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "site": "saucedemo",
+  "feature": "cart",
+  "tests": [
+    {
+      "id": "remove_item_from_cart",
+      "name": "test_remove_item_from_cart",
+      "title": "Removing an item empties the cart and hides the badge",
+      "pages": [
+        "inventory",
+        "cart"
+      ],
+      "preconditions": [
+        "logged in"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/inventory.html"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"add-to-cart-sauce-labs-backpack\"]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"shopping-cart-link\"]"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"cart-list\"]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"remove-sauce-labs-backpack\"]"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"remove-sauce-labs-backpack\"]",
+          "note": "item removed from cart"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"shopping-cart-badge\"]",
+          "note": "badge disappears when cart is empty"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"continue-shopping\"]"
+        },
+        {
+          "action": "expect_url",
+          "value": "/inventory.html"
+        }
+      ],
+      "expected": [
+        "remove button disappears after clicking",
+        "cart badge is no longer present in the header",
+        "continue shopping returns to the inventory page"
+      ]
+    },
+    {
+      "id": "cart_badge_updates_on_add_remove",
+      "name": "test_cart_badge_updates_on_add_remove",
+      "title": "Cart badge appears when adding an item and disappears when removing it",
+      "pages": [
+        "inventory",
+        "cart"
+      ],
+      "preconditions": [
+        "logged in"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/inventory.html"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"shopping-cart-badge\"]",
+          "note": "badge absent on empty cart"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"add-to-cart-sauce-labs-backpack\"]"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"shopping-cart-badge\"]"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"shopping-cart-badge\"]",
+          "value": "1"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"shopping-cart-link\"]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"remove-sauce-labs-backpack\"]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"continue-shopping\"]"
+        },
+        {
+          "action": "expect_url",
+          "value": "/inventory.html"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"shopping-cart-badge\"]",
+          "note": "badge gone after removal"
+        }
+      ],
+      "expected": [
+        "badge is not present when cart is empty",
+        "badge appears with count 1 after adding an item",
+        "badge disappears after removing the only item and returning to inventory"
+      ]
+    }
+  ],
+  "meta": {
+    "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+    "generatedAt": "2026-08-19T17:41:35.814Z",
+    "pagesUsed": [
+      "cart",
+      "checkout_step_one",
+      "checkout_step_two",
+      "inventory"
+    ],
+    "repairs": 0,
+    "splitFrom": "cart and checkout",
+    "splitReason": "The combined 5-test plan produced a generator prompt that free endpoints would not serve (19.8k chars, repeated timeouts). Split locally, at no model cost."
+  }
+}

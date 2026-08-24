@@ -1,0 +1,255 @@
+{
+  "site": "saucedemo",
+  "feature": "login",
+  "tests": [
+    {
+      "id": "login_success_standard_user",
+      "name": "test_login_success_standard_user",
+      "title": "Standard user can log in and reaches the inventory page",
+      "pages": [
+        "login",
+        "inventory"
+      ],
+      "preconditions": [
+        "logged out"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"username\"]",
+          "value": "standard_user"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"password\"]",
+          "value": "secret_sauce"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"login-button\"]"
+        },
+        {
+          "action": "expect_url",
+          "value": "/inventory.html"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"title\"]",
+          "note": "Products title visible on inventory page"
+        }
+      ],
+      "expected": [
+        "user is redirected to the inventory page",
+        "the Products header is displayed"
+      ]
+    },
+    {
+      "id": "login_failure_locked_out_user",
+      "name": "test_login_failure_locked_out_user",
+      "title": "Locked out user sees an error and remains on the login page",
+      "pages": [
+        "login",
+        "login_error"
+      ],
+      "preconditions": [
+        "logged out"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"username\"]",
+          "value": "locked_out_user"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"password\"]",
+          "value": "secret_sauce"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"login-button\"]"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"error\"]",
+          "note": "error banner appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"error\"]",
+          "value": "Epic sadface: Sorry, this user has been locked out."
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"login-button\"]",
+          "note": "login form still present"
+        }
+      ],
+      "expected": [
+        "an error message stating the user is locked out is displayed",
+        "the user is not signed in and the login form remains visible"
+      ]
+    },
+    {
+      "id": "login_failure_wrong_password",
+      "name": "test_login_failure_wrong_password",
+      "title": "Valid username with wrong password shows credential error",
+      "pages": [
+        "login",
+        "login_error"
+      ],
+      "preconditions": [
+        "logged out"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"username\"]",
+          "value": "standard_user"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"password\"]",
+          "value": "wrong_password"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"login-button\"]"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"error\"]",
+          "note": "error banner appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"error\"]",
+          "value": "Epic sadface: Username and password do not match any user in this service"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"login-button\"]",
+          "note": "login form still present"
+        }
+      ],
+      "expected": [
+        "an error message indicating invalid credentials is displayed",
+        "the user is not signed in and the login form remains visible"
+      ]
+    },
+    {
+      "id": "login_failure_empty_username",
+      "name": "test_login_failure_empty_username",
+      "title": "Empty username with valid password shows required field error",
+      "pages": [
+        "login",
+        "login_error"
+      ],
+      "preconditions": [
+        "logged out"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"password\"]",
+          "value": "secret_sauce"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"login-button\"]"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"error\"]",
+          "note": "error banner appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"error\"]",
+          "value": "Epic sadface: Username is required"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"login-button\"]",
+          "note": "login form still present"
+        }
+      ],
+      "expected": [
+        "an error message stating username is required is displayed",
+        "the user is not signed in and the login form remains visible"
+      ]
+    },
+    {
+      "id": "login_failure_empty_password",
+      "name": "test_login_failure_empty_password",
+      "title": "Valid username with empty password shows required field error",
+      "pages": [
+        "login",
+        "login_error"
+      ],
+      "preconditions": [
+        "logged out"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"username\"]",
+          "value": "standard_user"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"login-button\"]"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"error\"]",
+          "note": "error banner appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"error\"]",
+          "value": "Epic sadface: Password is required"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"login-button\"]",
+          "note": "login form still present"
+        }
+      ],
+      "expected": [
+        "an error message stating password is required is displayed",
+        "the user is not signed in and the login form remains visible"
+      ]
+    }
+  ],
+  "meta": {
+    "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+    "generatedAt": "2026-08-19T16:12:28.384Z",
+    "pagesUsed": [
+      "inventory",
+      "login",
+      "login_error"
+    ],
+    "repairs": 1
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "backend": "openrouter",
+  "baseUrl": "https://openrouter.ai/api/v1",
+  "//": "FREE MODELS ONLY. A paid model id here breaks the POC premise; the client refuses any model whose id does not end in ':free' unless allowPaid is true.",
+  "allowPaid": false,
+  "roles": {
+    "planner": {
+      "model": "openrouter/free",
+      "fallbacks": [
+        "openrouter/free",
+        "poolside/laguna-s-2.1:free",
+        "z-ai/glm-5.2:free"
+      ],
+      "maxOutputTokens": 16000,
+      "temperature": 0.2,
+      "//": "nemotron-3-ultra reads a big capture best. Swapping it out on a bad afternoon did not help: the upstream limit is token-weighted, so every model refused the same ~12k prompt while answering a four-token one instantly. Prompt size is the lever, not model choice."
+    },
+    "generator": {
+      "model": "openrouter/free",
+      "fallbacks": [
+        "openrouter/free",
+        "cohere/north-mini-code:free",
+        "z-ai/glm-5.2:free"
+      ],
+      "maxOutputTokens": 16000,
+      "temperature": 0.1,
+      "//": "Preferred model first, then openrouter/free, which picks whichever free model is actually serving. Learned by watching a fixed fallback list spend 20 minutes discovering that both named endpoints were down. Named models after the router are a last resort, not a queue."
+    },
+    "healer": {
+      "model": "poolside/laguna-s-2.1:free",
+      "fallbacks": [
+        "openrouter/free",
+        "cohere/north-mini-code:free"
+      ],
+      "maxOutputTokens": 12000,
+      "temperature": 0
+    },
+    "ping": {
+      "model": "poolside/laguna-s-2.1:free",
+      "fallbacks": [],
+      "maxOutputTokens": 64,
+      "temperature": 0
+    }
+  },
+  "limits": {
+    "//": "OpenRouter free tier: 20 requests/minute, 50/day (1000/day after a one-time $10 credit purchase). Free endpoints are SLOW and contended: a large generation can take minutes or never be served at all. Keep the timeout generous but the retry count low - a timeout means the endpoint is busy, and the fallback chain is the real remedy, so reach it sooner.",
+    "dailyRequestBudget": 46,
+    "minRequestIntervalMs": 3500,
+    "requestTimeoutMs": 180000,
+    "maxRetries": 2
+  },
+  "paths": {
+    "sites": "config/sites",
+    "plans": "plans",
+    "tests": "tests",
+    "reports": "reports",
+    "context": ".ai_context",
+    "usageFile": "usage.json"
+  }
+}

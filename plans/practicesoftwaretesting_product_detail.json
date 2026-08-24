@@ -1,0 +1,116 @@
+{
+  "site": "practicesoftwaretesting",
+  "feature": "product detail",
+  "tests": [
+    {
+      "id": "product_detail_add_to_cart_success",
+      "name": "test_product_detail_add_to_cart_success",
+      "title": "Add to cart and favorites work on product detail",
+      "pages": [
+        "home",
+        "product_detail",
+        "product_detail_added"
+      ],
+      "preconditions": [],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"product-name\"]"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"product-name\"]",
+          "note": "product name visible"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"unit-price\"]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"increase-quantity\"]"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"quantity\"]",
+          "value": "2"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"add-to-cart\"]"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"cart-quantity\"]",
+          "note": "the header count appears; the button itself does not change"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"cart-quantity\"]",
+          "value": "2",
+          "note": "the header count must equal the quantity added, which is what makes this assertion mean anything"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"add-to-favorites\"]"
+        }
+      ],
+      "expected": [
+        "the product is added to the cart",
+        "the header shows one item in the cart",
+        "the add-to-cart control is unchanged — this site does not replace it"
+      ]
+    },
+    {
+      "id": "product_detail_quantity_decrease_edge",
+      "name": "test_product_detail_quantity_decrease_edge",
+      "title": "Decreasing quantity below minimum leaves it unchanged",
+      "pages": [
+        "home",
+        "product_detail"
+      ],
+      "preconditions": [],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"product-name\"]"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"quantity\"]",
+          "value": "1"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"decrease-quantity\"]"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"quantity\"]",
+          "value": "1"
+        }
+      ],
+      "expected": [
+        "quantity does not decrease below 1"
+      ]
+    }
+  ],
+  "meta": {
+    "model": "nvidia/nemotron-3-nano-30b-a3b:free",
+    "generatedAt": "2026-08-22T13:47:06.773Z",
+    "pagesUsed": [
+      "home",
+      "product_detail"
+    ],
+    "repairs": 0,
+    "dataFix": "2026-08-22: the plan asserted that add-to-cart disappears after adding, which is SauceDemo behaviour, not this site. Here the button stays and reads \"Add to cart\" unchanged; what changes is data-test=\"cart-quantity\" appearing in the header, plus a toast. Neither exists on the page before the click, so a plan written from product_detail alone had nothing true left to assert about the click. Fixed by capturing product_detail_added and asserting the header count. Second correction: the test steps the quantity up to 2 before adding, so the header count is 2. My first fix made the assertion match the application and not the test's own earlier action - a consistent assertion has to agree with both."
+  }
+}

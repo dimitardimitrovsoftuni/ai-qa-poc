@@ -1,0 +1,242 @@
+{
+  "site": "practicesoftwaretesting",
+  "feature": "contact form validation",
+  "tests": [
+    {
+      "id": "contact_empty_submission_shows_all_required_errors",
+      "name": "test_contact_empty_submission_shows_all_required_errors",
+      "title": "Submitting the contact form empty shows a validation alert for every required field",
+      "pages": [
+        "contact",
+        "contact_error"
+      ],
+      "preconditions": [
+        "logged out"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/contact"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"contact-submit\"]"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"first-name-error\"]",
+          "note": "first name error appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"first-name-error\"]",
+          "value": "First name is required"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"last-name-error\"]",
+          "note": "last name error appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"last-name-error\"]",
+          "value": "Last name is required"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"email-error\"]",
+          "note": "email error appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"email-error\"]",
+          "value": "Email is required"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"subject-error\"]",
+          "note": "subject error appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"subject-error\"]",
+          "value": "Subject is required"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"message-error\"]",
+          "note": "message error appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"message-error\"]",
+          "value": "Message is required"
+        }
+      ],
+      "expected": [
+        "all five required-field alerts are visible",
+        "each alert contains the exact message for its field"
+      ]
+    },
+    {
+      "id": "contact_valid_submission_shows_no_validation_errors",
+      "name": "test_contact_valid_submission_shows_no_validation_errors",
+      "title": "Submitting the contact form with all required fields filled shows no client-side validation errors",
+      "pages": [
+        "contact",
+        "contact_error"
+      ],
+      "preconditions": [
+        "logged out"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/contact"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"first-name\"]",
+          "value": "John"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"last-name\"]",
+          "value": "Doe"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"email\"]",
+          "value": "john.doe@example.com"
+        },
+        {
+          "action": "select",
+          "selector": "[data-test=\"subject\"]",
+          "value": "Customer service"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"message\"]",
+          "value": "This is a valid test message that meets any length requirement."
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"contact-submit\"]"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"first-name-error\"]",
+          "note": "no first name error"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"last-name-error\"]",
+          "note": "no last name error"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"email-error\"]",
+          "note": "no email error"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"subject-error\"]",
+          "note": "no subject error"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"message-error\"]",
+          "note": "no message error"
+        }
+      ],
+      "expected": [
+        "no validation alert is present after submitting a fully valid form"
+      ]
+    },
+    {
+      "id": "contact_partial_submission_shows_only_missing_field_errors",
+      "name": "test_contact_partial_submission_shows_only_missing_field_errors",
+      "title": "Submitting the contact form with only some required fields filled shows errors only for the missing fields",
+      "pages": [
+        "contact",
+        "contact_error"
+      ],
+      "preconditions": [
+        "logged out"
+      ],
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/contact"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"first-name\"]",
+          "value": "Jane"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"last-name\"]",
+          "value": "Smith"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-test=\"email\"]",
+          "value": "jane.smith@example.com"
+        },
+        {
+          "action": "click",
+          "selector": "[data-test=\"contact-submit\"]"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"first-name-error\"]",
+          "note": "first name has no error"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"last-name-error\"]",
+          "note": "last name has no error"
+        },
+        {
+          "action": "expect_absent",
+          "selector": "[data-test=\"email-error\"]",
+          "note": "email has no error"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"subject-error\"]",
+          "note": "subject error appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"subject-error\"]",
+          "value": "Subject is required"
+        },
+        {
+          "action": "expect_visible",
+          "selector": "[data-test=\"message-error\"]",
+          "note": "message error appears"
+        },
+        {
+          "action": "expect_text",
+          "selector": "[data-test=\"message-error\"]",
+          "value": "Message is required"
+        }
+      ],
+      "expected": [
+        "only the subject and message alerts are shown",
+        "the filled fields (first name, last name, email) have no alerts"
+      ]
+    }
+  ],
+  "meta": {
+    "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+    "generatedAt": "2026-08-19T18:44:24.755Z",
+    "pagesUsed": [
+      "contact",
+      "contact_error"
+    ],
+    "repairs": 1
+  }
+}
